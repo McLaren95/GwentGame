@@ -1,19 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 
-    [CreateAssetMenu(fileName = "TypeMillitarty", menuName = "Scriptable Objects/TypeMillitarty")]
-    public class TypeMillitarty : ScriptableObject
+public class TypeMillitarty : MonoBehaviour
+{
+    string type;
+
+    public string set_type(int type)
     {
-        string type;
-
-        string get_type()
+        List<string> types = new List<string>
         {
-            return type;
-        }
+            "Ближний",
+            "Дальний",
+            "Осадный"
+        };
 
-        void set_type(int type)
-        {
-            return;
-        }
-
+        return types[type];
+        //try
+        //{
+        //    return types[type];
+        //} catch (indexer)
+        //{
+        //    Console.Write("Не верный тип");
+        //    return "";
+        //}
     }
+
+}

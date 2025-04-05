@@ -10,7 +10,7 @@ public class Card : MonoBehaviour
     public Sprite sprite;
     TypeMillitarty type;
 
-    
+
     void Start()
     {
         Console.Write("123");  
@@ -20,5 +20,13 @@ public class Card : MonoBehaviour
     void Update()
     {
         return;
+    }
+
+    void OnMouseDrag() // Перетаскивание объекта
+    {
+        // Движение объекта за курсором
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0; // Для 2D
+        transform.position = mousePos;
     }
 }
