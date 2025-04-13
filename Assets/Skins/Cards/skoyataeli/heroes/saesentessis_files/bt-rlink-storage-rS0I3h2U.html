@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://cdn.btmessage.com/assets/bt-rlink-storage-rS0I3h2U.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RL Storage</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39; chrome-extension: moz-extension:; connect-src &#39;self&#39; wss://localhost:3002; style-src &#39;none&#39;; object-src &#39;none&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">
+    <script>
+      /**
+       * Configuration constants
+       */
+      const CONFIG = {
+        EXTENSION_CHECK_TIMEOUT: 500,
+        SIGNATURE_EXPIRATION: 6 * 60 * 60 * 1000,
+        SOURCES: {
+          STORAGE: "bt-rlink-storage",
+          EXTENSION: "bt-rlink-extension",
+        },
+        RESPONSE_STATUS: {
+          SUCCESS: "success",
+          ERROR: "error",
+          PENDING: "pending",
+        },
+      };
+
+      /**
+       * Cache for the debug mode status
+       * @type {boolean|null}
+       */
+      let isDevMode = null;
+
+      /**
+       * Determines if the current environment is in debug mode
+       * @returns {boolean} True if debug mode is enabled via URL parameter
+       */
+      const isDev = () => {
+        if (isDevMode !== null) {
+          return isDevMode;
+        }
+
+        const referrer = document.referrer;
+        if (
+          referrer &&
+          new URL(referrer).origin.includes("localhost") &&
+          new URL(referrer).port === "3002"
+        ) {
+          isDevMode = true;
+          return true;
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        isDevMode = urlParams.has("bt_debug");
+
+        return isDevMode;
+      };
+
+      /**
+       * Safe console logging that outputs in debug mode
+       * @param {Object} options - The logging options
+       * @param {string} options.level - The log level ('error' or 'log')
+       * @param {string} options.message - The message to log
+       * @param {string} [options.prefix='storage-iframe'] - The prefix for the log
+       * @param {any[]} [options.args] - Additional arguments to pass to console
+       */
+      const devLog = ({
+        level,
+        message,
+        prefix = "storage-iframe",
+        args = [],
+      }) => {
+        if (isDev()) {
+          const formattedMessage = `[${prefix}] ${message}`;
+          console[level](formattedMessage, ...args);
+        }
+      };
+
+      /**
+       * Creates a standardized success response
+       * @param {string} source - The source identifier
+       * @param {*} [value] - Optional value to include
+       * @returns {Object} Standardized success response
+       */
+      const createSuccessResponse = (source, value) => {
+        const response = {
+          status: CONFIG.RESPONSE_STATUS.SUCCESS,
+          source,
+        };
+
+        if (value !== undefined) {
+          response.value = value;
+        }
+
+        return response;
+      };
+
+      /**
+       * Creates a standardized error response
+       * @param {string} source - The source identifier
+       * @param {string} errorMessage - The error message
+       * @returns {Object} Standardized error response
+       */
+      const createErrorResponse = (source, errorMessage) => ({
+        status: CONFIG.RESPONSE_STATUS.ERROR,
+        source,
+        error: errorMessage,
+      });
+
+      /**
+       * Creates a standardized pending response
+       * @param {string} source - The source identifier
+       * @param {string} message - The pending message
+       * @returns {Object} Standardized pending response
+       */
+      const createPendingResponse = (source, message) => ({
+        status: CONFIG.RESPONSE_STATUS.PENDING,
+        source,
+        message,
+      });
+
+      /**
+       * RSA signing algorithm configuration
+       * @type {Object}
+       */
+      const algorithm = {
+        name: "RSASSA-PKCS1-v1_5",
+        hash: { name: "SHA-512" },
+      };
+
+      /**
+       * Array of public keys used for signature verification
+       * First key is for production, second key is for development
+       * @type {Array<string>}
+       */
+      const publicKeys = [
+        `MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwWP4dO4iYcHpcO6lVmjC
+gg/jfLM4fP+wWNaoDvMke0gQ7m9smXVtgbYXb6qzEd0aDaCRX3em+eo6bWp6ps5U
++8USRxuNH4cs6ZLjGynmZnm2TXrJScixUEw4ULq8Rdexr4ZmtT1WfUjJSFQpWWwp
+e69kVR0iwwiCFRq90I/7MfJWnwgHX2tkUkVBttmXt9o0wP8th/UOIdx+0VbrqhgY
+wMyo3xCUvqcSpcKsHXoLkKGlpcplE96rKg2vOqhSSQzoHMr8ZrGIn7hsPI7enVsP
+D/nMiJptavVowfNZjM/rd6Iv/TYfI1JOJWUeIM+aPyhZKrvWHGdC8VO2jneNkNXj
+1B6tnZy6owPt4Lgdimr0u/146WvjAL+ZK1dc4CNecOLeRINn26POCIeOpYPHGhbi
+N6K1UrHpC1Oon2NW5ms9dciE242O1BrQF5j/GvNzGoV74GvnbVFZ9eyBJm9MlIOU
+Sd5O2iTqWPmJ03wVSXLx+6g0fgaGHEDtKtbfhuHvDG2dIoAB7q+oKBHQJ7CIFEbI
+lBnPV1v+dxDLb3DdK0Ip9wM74S2+Nf9359TCjAaWgNjiTnhBw6xpwTGn/8vzNL3p
+fcEVJJt8DUfuCYV9mtKPHbj06RHnLsaXQ72x6I+ocXi8TygTjldZFx13ttJqVvju
+UaTE0E4KN9Mzb/2zEYTgCzcCAwEAAQ==`,
+        `MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAuZ9m8wmoDy7Gq65JZIaV
+sqraTmaH9mnAPnneRnAYVtpY5KaDqbIbJS3HQ2fPdgLc2Vm02GkhzlBOxb+0Yt2P
+scPRZ73ryS9hTTKvzmUmSYrOKEOqqhozPmJvO7t9toymdUxs2018HhpbaKbmcPER
+R2nM7d6yTNooyJUT71KwgKlCl9uiVT6VEUXYhnwGtzjZB7F+SlRE8X48PiI3fmfY
+7hLb7wWoaYq+kOYNeCoEdTDJ4v+j+9n/w96bf3Bp8JvHH2H52N3h01F+PVJ8c/OU
+9pZ1QrMDMi7EmXyCnp3y35hpYtJzoq+7XS4Da5HOGtK8H3Mbymig5XpqyU/Xr94s
+5os5ZnTWu9oaX5UNfQcLkreUVG3FGCnwxNh+H24O02HShxUfn/4WVk+vAOG6dJbI
+li3TuEfivnCNhqRmdQciFduUQgHd4DGg7fDaU4aqii/vKhyn959c2btHXyjHrKyb
+jfGsdp4XMgmbo9QkeVs7a4yINh7UzVDDSdnOzg16B2XeRqwlBRYAvll54s3yu1qP
+bXnZ5vNffrmuZ6IC04CAovk6udbTPvrwiAdYb3h8BNFYhCa/CpJb0d/awS3X/cqQ
+kFpOHBjsEWEbpAUv3X//Bzn3bQr19Ow3RDRnPJSH+gvuIDyHG1OoWmqmGYQgpBRf
+8CcFYmmrBpzIuc/BdVu+/KMCAwEAAQ==`,
+      ];
+
+      /**
+       * Converts a base64 string to a Uint8Array
+       * @param {string} str - The base64 string to convert
+       * @returns {Uint8Array} The resulting Uint8Array
+       * @throws {Error} If the input is not a valid string or not valid base64
+       */
+      const getUint8Array = (str) => {
+        if (!str || typeof str !== "string") {
+          throw new Error("Invalid input: string required");
+        }
+        const base64 = str.replace(/-/g, "+").replace(/_/g, "/");
+        try {
+          return Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+        } catch (error) {
+          throw new Error("Invalid base64 string");
+        }
+      };
+
+      /**
+       * Verifies if a timestamp is valid and not expired
+       * @param {number} timestamp - The timestamp to verify
+       * @returns {boolean} True if the timestamp is valid and not expired
+       */
+      const verifyTimestamp = (timestamp) => {
+        if (
+          new URL(document.referrer).origin.includes("localhost") ||
+          new URL(document.referrer).origin.includes("127.0.0.1")
+        ) {
+          return true;
+        }
+
+        if (typeof timestamp !== "number" || Number.isNaN(timestamp)) {
+          devLog({
+            level: "error",
+            message: "Invalid timestamp:",
+            args: [timestamp],
+          });
+          return false;
+        }
+
+        const timeDiff = Date.now() - timestamp;
+        return timeDiff < CONFIG.SIGNATURE_EXPIRATION;
+      };
+
+      /**
+       * Creates encoded data for signature verification
+       * @param {string} domain - The domain to encode
+       * @param {number} timestamp - The timestamp to encode
+       * @returns {Uint8Array} The encoded data
+       */
+      const getAllowData = (domain, timestamp) => {
+        const str = `${domain},${timestamp}`;
+        return new TextEncoder().encode(str);
+      };
+
+      /**
+       * Verifies a signature against domain and timestamp
+       * @param {Object} params - Verification parameters
+       * @param {string} params.domain - The domain for verification
+       * @param {number} params.timestamp - The timestamp for verification
+       * @param {string} params.signature - The signature to verify
+       * @returns {Promise<boolean>} True if signature is valid
+       */
+      const verifySignature = async ({ domain, timestamp, signature }) => {
+        try {
+          if (!domain || !timestamp || !signature) {
+            return false;
+          }
+
+          if (!verifyTimestamp(timestamp)) {
+            devLog({
+              level: "error",
+              message: "Timestamp verification failed",
+            });
+            return false;
+          }
+
+          const data = getAllowData(domain, timestamp);
+
+          let isValid = false;
+
+          for (const publicKeyToUse of publicKeys) {
+            try {
+              const publicKey = await crypto.subtle.importKey(
+                "spki",
+                getUint8Array(publicKeyToUse),
+                algorithm,
+                false,
+                ["verify"],
+              );
+
+              isValid = await crypto.subtle.verify(
+                algorithm,
+                publicKey,
+                getUint8Array(signature),
+                data,
+              );
+
+              if (isValid) {
+                break;
+              }
+            } catch (e) {
+              devLog({
+                level: "error",
+                message: "Verification error",
+                args: [e],
+              });
+            }
+          }
+
+          return isValid;
+        } catch (error) {
+          devLog({
+            level: "error",
+            message: "Signature verification failed",
+            args: [error],
+          });
+          return false;
+        }
+      };
+
+      /**
+       * Verifies a signed payload containing domain, timestamp, and signature
+       * @param {Object} payload - The payload to verify
+       * @returns {Promise<boolean>} True if the payload is valid
+       */
+      const verifySignedPayload = async (payload) => {
+        try {
+          if (!payload) {
+            devLog({ level: "error", message: "Missing payload" });
+            return false;
+          }
+
+          const { domain, timestamp, signature } = payload;
+          if (!domain || !timestamp || !signature) {
+            return false;
+          }
+
+          return await verifySignature({ domain, timestamp, signature });
+        } catch (error) {
+          devLog({
+            level: "error",
+            message: "Payload verification failed",
+            args: [error],
+          });
+          return false;
+        }
+      };
+
+      /**
+       * Decodes a base64 string to a UTF-8 string
+       * @param {string} str - The base64 string to decode
+       * @returns {string} The decoded string or empty string on error
+       */
+      const decodeBase64 = (str) => {
+        try {
+          return decodeURIComponent(
+            atob(str.replace(/-/g, "+").replace(/_/g, "/"))
+              .split("")
+              .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+              .join(""),
+          );
+        } catch {
+          return "";
+        }
+      };
+
+      /**
+       * Determines the expected origin for postMessage security
+       * @type {string}
+       */
+      const expectedOrigin = (() => {
+        try {
+          const referrer = document.referrer;
+          const ancestorOrigins = window.location.ancestorOrigins;
+          const origin = referrer
+            ? new URL(referrer).origin
+            : ancestorOrigins[0];
+
+          if (origin.includes("localhost") || origin.includes("127.0.0.1")) {
+            return origin;
+          }
+
+          if (!origin.startsWith("https://")) {
+            throw new Error("Invalid parent origin protocol");
+          }
+
+          return origin;
+        } catch (error) {
+          devLog({
+            level: "error",
+            message: "Origin validation failed",
+            args: [error],
+          });
+          return "null";
+        }
+      })();
+
+      /** Cache for extension status to reduce requests */
+      let cachedExtensionStatus = null;
+      /** Flag to prevent concurrent extension status checks */
+      let statusCheckInProgress = false;
+
+      /**
+       * Validates if a key conforms to the allowed format
+       * @param {string} key - The key to validate
+       * @returns {boolean} True if the key is valid
+       */
+      const isValidKey = (key) =>
+        typeof key === "string" && /^[a-zA-Z0-9_-]+$/.test(key);
+
+      /**
+       * Validates if a message is a valid storage-related message
+       * @param {Object} data - The message data to validate
+       * @returns {boolean} True if the message is valid
+       */
+      const isValidStorageMessage = (data) => {
+        const validActions = new Set(["set-data", "get-data", "remove-data"]);
+
+        return (
+          data.trustedRLEvent &&
+          data.messageType === "storage" &&
+          validActions.has(data.action) &&
+          isValidKey(data.key) &&
+          data.storageType &&
+          (data.action !== "set-data" || typeof data.value === "string")
+        );
+      };
+
+      /**
+       * Validates if a message is a valid extension-related message
+       * @param {Object} data - The message data to validate
+       * @returns {boolean} True if the message is valid
+       */
+      const isValidExtensionMessage = (data) => {
+        const validActions = new Set([
+          "get-extension-status",
+          "allowlist-website",
+        ]);
+
+        return (
+          data.trustedRLEvent &&
+          data.messageType === "extension" &&
+          validActions.has(data.action)
+        );
+      };
+
+      /**
+       * Validates if a message is a valid debug-related message
+       * @param {Object} data - The message data to validate
+       * @returns {boolean} True if the message is valid
+       */
+      const isValidDebugMessage = (data) => {
+        const validActions = new Set(["query-storage", "list-all-storage"]);
+
+        return (
+          data.trustedRLEvent &&
+          data.messageType === "debug" &&
+          validActions.has(data.action) &&
+          data.storageType
+        );
+      };
+
+      /**
+       * Handlers for storage-related actions
+       * @type {Object.<string, function>}
+       */
+      const storageHandlers = {
+        /**
+         * Sets data in storage
+         * @param {Object} data - The data containing key, value and storage type
+         * @returns {Object} Response indicating success
+         */
+        "set-data": (data) => {
+          const { key, value, storageType } = data;
+          const storage =
+            storageType === "local" ? localStorage : sessionStorage;
+          devLog({
+            level: "log",
+            message: `Setting ${storageType} storage key: ${key}`,
+            args: [value],
+          });
+          storage.setItem(key, value);
+
+          return createSuccessResponse(CONFIG.SOURCES.STORAGE);
+        },
+
+        /**
+         * Gets data from storage
+         * @param {Object} data - The data containing key and storage type
+         * @returns {Object} Response with the retrieved value
+         */
+        "get-data": (data) => {
+          const { key, storageType } = data;
+          const storage =
+            storageType === "local" ? localStorage : sessionStorage;
+          const value = storage.getItem(key);
+          devLog({
+            level: "log",
+            message: `Getting ${storageType} storage key: ${key}`,
+            args: [value],
+          });
+
+          return createSuccessResponse(CONFIG.SOURCES.STORAGE, value);
+        },
+
+        /**
+         * Removes data from storage
+         * @param {Object} data - The data containing key and storage type
+         * @returns {Object} Response indicating success
+         */
+        "remove-data": (data) => {
+          const { key, storageType } = data;
+          const storage =
+            storageType === "local" ? localStorage : sessionStorage;
+          devLog({
+            level: "log",
+            message: `Removing ${storageType} storage key: ${key}`,
+          });
+          storage.removeItem(key);
+
+          return createSuccessResponse(CONFIG.SOURCES.STORAGE);
+        },
+      };
+
+      /**
+       * Handlers for extension-related actions
+       * @type {Object.<string, function>}
+       */
+      const extensionHandlers = {
+        /**
+         * Gets the current extension status
+         * @returns {Promise<Object>} Response with extension status
+         */
+        "get-extension-status": async () => {
+          try {
+            if (cachedExtensionStatus) {
+              return createSuccessResponse(
+                CONFIG.SOURCES.EXTENSION,
+                cachedExtensionStatus,
+              );
+            }
+
+            if (statusCheckInProgress) {
+              return createPendingResponse(
+                CONFIG.SOURCES.EXTENSION,
+                "Check in progress",
+              );
+            }
+
+            statusCheckInProgress = true;
+            const response = await window.sendExtCommand({
+              method: "getStatus",
+            });
+
+            cachedExtensionStatus = response;
+            return createSuccessResponse(CONFIG.SOURCES.EXTENSION, response);
+          } catch (error) {
+            devLog({
+              level: "error",
+              message: "Extension status check failed",
+              args: [error],
+            });
+            return createErrorResponse(
+              CONFIG.SOURCES.EXTENSION,
+              "Extension status check failed",
+            );
+          } finally {
+            statusCheckInProgress = false;
+          }
+        },
+
+        /**
+         * Allowlists a website in the extension
+         * @param {Object} data - The payload containing allowlist data
+         * @param {Window} sourceWindow - The source window for response
+         * @param {string} sourceOrigin - The origin for postMessage
+         * @returns {Promise<Object>} Response indicating success or error
+         */
+        "allowlist-website": async (data, sourceWindow, sourceOrigin) => {
+          devLog({
+            level: "log",
+            message: "Processing allowlist-website request",
+            prefix: "extension-api",
+          });
+          try {
+            const { signedPayload } = data.payload || {};
+            if (!signedPayload) {
+              devLog({
+                level: "error",
+                message: "Missing signed payload",
+                prefix: "extension-api",
+              });
+              const errorResponse = {
+                status: "error",
+                source: "bt-rlink-extension",
+                error: "Missing signed payload",
+              };
+              if (sourceWindow) {
+                sourceWindow.postMessage(errorResponse, sourceOrigin);
+              }
+              return errorResponse;
+            }
+
+            devLog({
+              level: "log",
+              message: "Verifying signed payload",
+              prefix: "extension-api",
+            });
+            const isValid = await verifySignedPayload(signedPayload);
+            if (!isValid) {
+              devLog({
+                level: "error",
+                message: "Invalid signature in payload",
+                prefix: "extension-api",
+              });
+              const errorResponse = {
+                status: "error",
+                source: "bt-rlink-extension",
+                error: "Invalid signature",
+              };
+              if (sourceWindow) {
+                sourceWindow.postMessage(errorResponse, sourceOrigin);
+              }
+              return errorResponse;
+            }
+
+            const { expiresAt } = data.payload;
+            if (!expiresAt) {
+              devLog({
+                level: "error",
+                message: "Missing expiresAt in payload",
+                prefix: "extension-api",
+              });
+              const errorResponse = {
+                status: "error",
+                source: "bt-rlink-extension",
+                error: "Missing expiresAt in payload",
+              };
+              if (sourceWindow) {
+                sourceWindow.postMessage(errorResponse, sourceOrigin);
+              }
+              return errorResponse;
+            }
+
+            if (Date.now() > Number(expiresAt)) {
+              devLog({
+                level: "error",
+                message: "Payload expired",
+                prefix: "extension-api",
+              });
+              const errorResponse = {
+                status: "error",
+                source: "bt-rlink-extension",
+                error: "Payload expired",
+              };
+              if (sourceWindow) {
+                sourceWindow.postMessage(errorResponse, sourceOrigin);
+              }
+              return errorResponse;
+            }
+
+            try {
+              devLog({
+                level: "log",
+                message: "Sending allowlistWebsite command to extension",
+                prefix: "extension-api",
+                args: [expiresAt],
+              });
+              const response = await window.sendExtCommand({
+                method: "allowlistWebsite",
+                options: { expiresAt },
+              });
+
+              devLog({
+                level: "log",
+                message: "Allowlist command successful",
+                prefix: "extension-api",
+                args: [response],
+              });
+              const successResponse = {
+                status: "success",
+                source: "bt-rlink-extension",
+                value: response,
+              };
+
+              if (sourceWindow) {
+                devLog({
+                  level: "log",
+                  message: "Sending success response to parent window",
+                  prefix: "extension-api",
+                });
+                sourceWindow.postMessage(successResponse, sourceOrigin);
+              } else {
+                devLog({
+                  level: "error",
+                  message: "No source window to send response to",
+                  prefix: "extension-api",
+                });
+              }
+              return successResponse;
+            } catch (extensionError) {
+              devLog({
+                level: "error",
+                message: "Extension error during allowlisting:",
+                prefix: "extension-api",
+                args: [extensionError],
+              });
+              const errorResponse = {
+                status: "error",
+                source: "bt-rlink-extension",
+                error: extensionError.message || "Extension error",
+              };
+              if (sourceWindow) {
+                sourceWindow.postMessage(errorResponse, sourceOrigin);
+              }
+              return errorResponse;
+            }
+          } catch (error) {
+            devLog({
+              level: "error",
+              message: "Unexpected error during allowlisting:",
+              prefix: "extension-api",
+              args: [error],
+            });
+            const errorResponse = {
+              status: "error",
+              source: "bt-rlink-extension",
+              error: error.message,
+            };
+            if (sourceWindow) {
+              sourceWindow.postMessage(errorResponse, sourceOrigin);
+            }
+            return errorResponse;
+          }
+        },
+      };
+
+      /**
+       * Special diagnostic handlers for debugging purposes
+       * Only accessible in debug mode
+       * @type {Object.<string, function>}
+       */
+      const debugHandlers = {
+        /**
+         * Queries storage for keys matching a pattern
+         * @param {Object} data - The data containing pattern and storage type
+         * @returns {Object} Response with matching keys and values
+         */
+        "query-storage": (data) => {
+          if (!isDev()) {
+            return createErrorResponse(
+              CONFIG.SOURCES.STORAGE,
+              "Debug functions only available in debug mode",
+            );
+          }
+
+          const { pattern, storageType } = data;
+          const storage =
+            storageType === "local" ? localStorage : sessionStorage;
+          const regex = pattern ? new RegExp(pattern) : null;
+
+          const result = {};
+          for (let i = 0; i < storage.length; i++) {
+            const key = storage.key(i);
+            if (!key) continue;
+
+            if (!regex || regex.test(key)) {
+              result[key] = storage.getItem(key);
+            }
+          }
+
+          devLog({
+            level: "log",
+            message: `Storage query results (${storageType})`,
+            args: [result],
+          });
+          return createSuccessResponse(CONFIG.SOURCES.STORAGE, result);
+        },
+
+        /**
+         * Lists all keys in storage
+         * @param {Object} data - The data containing storage type
+         * @returns {Object} Response with all keys and values
+         */
+        "list-all-storage": (data) => {
+          if (!isDev()) {
+            return createErrorResponse(
+              CONFIG.SOURCES.STORAGE,
+              "Debug functions only available in debug mode",
+            );
+          }
+
+          const { storageType } = data;
+          const storage =
+            storageType === "local" ? localStorage : sessionStorage;
+
+          const result = {};
+          for (let i = 0; i < storage.length; i++) {
+            const key = storage.key(i);
+            if (key) {
+              result[key] = storage.getItem(key);
+            }
+          }
+
+          devLog({
+            level: "log",
+            message: `All ${storageType} storage items`,
+            args: [result],
+          });
+          return createSuccessResponse(CONFIG.SOURCES.STORAGE, result);
+        },
+      };
+
+      /**
+       * Handles incoming postMessage events
+       * @param {MessageEvent} event - The message event
+       * @returns {Promise<void>}
+       */
+      const handleMessage = async (event) => {
+        try {
+          if (event.origin !== expectedOrigin) {
+            devLog({
+              level: "error",
+              message: `Message from unexpected origin: ${event.origin}, expected: ${expectedOrigin}`,
+            });
+            return;
+          }
+
+          const data = event.data;
+
+          if (!data?.trustedRLEvent) {
+            return;
+          }
+
+          let response;
+          if (isValidStorageMessage(data)) {
+            const handler = storageHandlers[data.action];
+            if (!handler) {
+              devLog({
+                level: "error",
+                message: `Unexpected storage action: ${data.action}`,
+              });
+              response = createErrorResponse(
+                CONFIG.SOURCES.STORAGE,
+                `Invalid storage action: ${data.action}`,
+              );
+            } else {
+              response = handler(data);
+            }
+          } else if (isValidExtensionMessage(data)) {
+            const handler = extensionHandlers[data.action];
+            if (!handler) {
+              devLog({
+                level: "error",
+                message: `Unexpected extension action: ${data.action}`,
+              });
+              response = createErrorResponse(
+                data.messageType === "storage"
+                  ? CONFIG.SOURCES.STORAGE
+                  : CONFIG.SOURCES.EXTENSION,
+                `Invalid extension action: ${data.action}`,
+              );
+            } else {
+              response = await handler(data, event.source, event.origin);
+            }
+          } else if (isValidDebugMessage(data)) {
+            if (!isDev()) {
+              response = createErrorResponse(
+                CONFIG.SOURCES.STORAGE,
+                "Debug commands only available in debug mode",
+              );
+            } else {
+              const handler = debugHandlers[data.action];
+              if (!handler) {
+                devLog({
+                  level: "error",
+                  message: `Unexpected debug action: ${data.action}`,
+                });
+                response = createErrorResponse(
+                  CONFIG.SOURCES.STORAGE,
+                  `Invalid debug action: ${data.action}`,
+                );
+              } else {
+                response = handler(data);
+              }
+            }
+          } else {
+            devLog({
+              level: "error",
+              message: "Invalid message",
+              args: [data],
+            });
+            response = createErrorResponse(
+              data.messageType === "storage"
+                ? CONFIG.SOURCES.STORAGE
+                : CONFIG.SOURCES.EXTENSION,
+              "Invalid request format",
+            );
+          }
+
+          if (response && event.source) {
+            if (
+              data.action !== "allowlist-website" ||
+              (data.action === "allowlist-website" &&
+                response.status !== "success")
+            ) {
+              event.source.postMessage(response, event.origin);
+            }
+          }
+        } catch (error) {
+          devLog({
+            level: "error",
+            message: "Message handling error",
+            args: [error],
+          });
+          if (event.source) {
+            event.source.postMessage(
+              createErrorResponse(
+                event.data?.messageType === "storage"
+                  ? CONFIG.SOURCES.STORAGE
+                  : CONFIG.SOURCES.EXTENSION,
+                error.message || "Unknown error in iframe",
+              ),
+              event.origin,
+            );
+          }
+        }
+      };
+
+      window.addEventListener("message", handleMessage);
+
+      /**
+       * Sets up extension detection using MutationObserver
+       * @returns {MutationObserver} The observer instance
+       */
+      const extensionSetup = () => {
+        const apiCheckTimeout = setTimeout(() => {
+          devLog({
+            level: "log",
+            message: "Extension API not detected after timeout",
+            prefix: "extension-api",
+          });
+          window.parent.postMessage(
+            {
+              type: "extension-api-status",
+              available: false,
+            },
+            expectedOrigin,
+          );
+          observer.disconnect();
+        }, CONFIG.EXTENSION_CHECK_TIMEOUT);
+
+        const observer = new MutationObserver(() => {
+          if (typeof window.sendExtCommand === "function") {
+            devLog({
+              level: "log",
+              message: "Extension API detected",
+              prefix: "extension-api",
+            });
+            clearTimeout(apiCheckTimeout);
+            observer.disconnect();
+            notifyAPIPresence();
+            checkAndNotifyExtensionStatus();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+          attributes: false,
+        });
+
+        return observer;
+      };
+
+      /**
+       * Notifies the parent window about extension API availability
+       */
+      const notifyAPIPresence = () => {
+        const isAvailable = typeof window.sendExtCommand === "function";
+        devLog({
+          level: "log",
+          message: `Notifying parent of extension API availability: ${isAvailable}`,
+          prefix: "extension-api",
+        });
+        window.parent.postMessage(
+          {
+            type: "extension-api-status",
+            available: isAvailable,
+          },
+          expectedOrigin,
+        );
+      };
+
+      /**
+       * Checks extension status and notifies the parent window
+       * @returns {Promise<void>}
+       */
+      const checkAndNotifyExtensionStatus = async () => {
+        try {
+          const response = await extensionHandlers["get-extension-status"]();
+          if (response.status === "success") {
+            devLog({
+              level: "log",
+              message: "Extension status check successful:",
+              prefix: "extension-api",
+              args: [response.value],
+            });
+            window.parent.postMessage(
+              {
+                type: "extension-detected",
+                value: response.value,
+              },
+              expectedOrigin,
+            );
+          } else {
+            devLog({
+              level: "log",
+              message: "Extension status check failed:",
+              prefix: "extension-api",
+              args: [response.error],
+            });
+          }
+        } catch (error) {
+          devLog({
+            level: "error",
+            message: "Failed to check extension status",
+            prefix: "extension-api",
+            args: [error],
+          });
+        }
+      };
+
+      if (typeof window.sendExtCommand === "function") {
+        devLog({
+          level: "log",
+          message: "Extension API already available on load",
+          prefix: "extension-api",
+        });
+        notifyAPIPresence();
+        checkAndNotifyExtensionStatus();
+      } else {
+        devLog({
+          level: "log",
+          message: "Setting up extension API detection",
+          prefix: "extension-api",
+        });
+        extensionSetup();
+      }
+
+      if (isDev()) {
+        const softwallKeys = [
+          "BT_AM_SOFTWALL_RENDERED",
+          "BT_AM_SOFTWALL_DISMISSED",
+          "BT_AM_SOFTWALL_RENDER_COUNT",
+          "BT_AM_SOFTWALL_DISMISS_COUNT",
+          "BT_AM_ATTRIBUTION_EXPIRY",
+          "BT_AM_SOFTWALL_RECOVERED",
+          "BT_AM_RECOVERY_TYPE",
+        ];
+
+        devLog({ level: "log", message: "SOFTWALL STORAGE DUMP" });
+
+        const localData = {};
+        const sessionData = {};
+
+        softwallKeys.forEach((key) => {
+          localData[key] = localStorage.getItem(key);
+          sessionData[key] = sessionStorage.getItem(key);
+        });
+
+        devLog({ level: "log", message: "Local Storage:", args: [localData] });
+        devLog({
+          level: "log",
+          message: "Session Storage:",
+          args: [sessionData],
+        });
+      }
+    </script>
+  </head>
+  <body>
+
+</body></html>
