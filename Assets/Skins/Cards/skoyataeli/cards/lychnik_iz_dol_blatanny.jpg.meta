@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lychnik_iz_dol_blatanny_0: -7291116737011896687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

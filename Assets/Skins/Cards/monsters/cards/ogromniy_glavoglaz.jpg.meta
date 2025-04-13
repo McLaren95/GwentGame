@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ogromniy_glavoglaz_0: 4504843281444896872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

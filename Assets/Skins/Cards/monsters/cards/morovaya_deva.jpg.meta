@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      morovaya_deva_0: -749069751848460864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

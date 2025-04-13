@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fandom-app-icon_0: 210345372089707481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

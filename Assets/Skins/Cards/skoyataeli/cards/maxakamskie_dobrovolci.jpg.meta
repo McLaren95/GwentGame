@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      maxakamskie_dobrovolci_0: 2008601203119996733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

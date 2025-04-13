@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      viloxvost_0: 7061694459171710440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      igosha_0: 6726522079538736740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

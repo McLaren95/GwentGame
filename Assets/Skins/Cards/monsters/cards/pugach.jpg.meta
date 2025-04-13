@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pugach_0: -4974341673730781890
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

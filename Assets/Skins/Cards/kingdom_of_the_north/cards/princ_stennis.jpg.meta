@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      princ_stennis_0: -5468647948358269474
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

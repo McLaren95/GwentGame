@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tymannik_0: 8296798683032713632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      katapylta_0: 4249040566650336482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

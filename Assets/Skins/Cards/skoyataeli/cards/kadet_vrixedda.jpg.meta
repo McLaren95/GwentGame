@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kadet_vrixedda_0: 3356305937222388088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

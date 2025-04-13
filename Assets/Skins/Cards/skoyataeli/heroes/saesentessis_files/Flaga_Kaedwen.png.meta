@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Flaga_Kaedwen_0: -7624505891800459264
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

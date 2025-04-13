@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fandom_logo_2021_lockup_2_0: -3888453722197603953
+      Fandom_logo_2021_lockup_2_1: -9002613644324611312
+      Fandom_logo_2021_lockup_2_2: 3141875081685954078
+      Fandom_logo_2021_lockup_2_3: -9220342522512206410
+      Fandom_logo_2021_lockup_2_4: -2085123108733525241
+      Fandom_logo_2021_lockup_2_5: 7521127651260072726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

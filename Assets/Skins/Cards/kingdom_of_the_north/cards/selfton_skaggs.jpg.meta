@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      selfton_skaggs_0: 3236974550980611864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

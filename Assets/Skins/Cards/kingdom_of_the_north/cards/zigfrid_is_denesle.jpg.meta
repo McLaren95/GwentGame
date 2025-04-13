@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      zigfrid_is_denesle_0: -5697044962678605010
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

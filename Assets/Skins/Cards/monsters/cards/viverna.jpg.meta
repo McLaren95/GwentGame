@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      viverna_0: -3302431496213454304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      luchnik_byroi_xorygvi_0: -5542246821894232236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

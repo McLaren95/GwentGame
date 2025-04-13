@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Gwint_card_0: -3955422582709746628
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

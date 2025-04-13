@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      esterad_tissen_0: -5980289864152396636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

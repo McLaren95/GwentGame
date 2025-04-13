@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vampiry_ecimma_0: 3975443257018351366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

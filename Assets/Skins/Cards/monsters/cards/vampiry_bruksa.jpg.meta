@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vampiry_bruksa_0: 2350401240310916299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

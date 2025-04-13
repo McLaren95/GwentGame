@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vasilisk_0: -2140809451917841233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

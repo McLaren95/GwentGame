@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yarpen_zigrin_0: -1348208740557260405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

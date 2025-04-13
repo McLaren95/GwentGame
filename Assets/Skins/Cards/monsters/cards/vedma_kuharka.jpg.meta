@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vedma_kuharka_0: 259089337799293146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

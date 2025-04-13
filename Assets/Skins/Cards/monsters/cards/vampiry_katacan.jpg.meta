@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vampiry_katacan_0: -5414279791630462639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

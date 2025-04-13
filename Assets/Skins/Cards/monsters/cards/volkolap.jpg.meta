@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      volkolap_0: -1195086784079126802
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      keyra_mec_0: -5730532711068788289
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

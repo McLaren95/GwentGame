@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yan_natalis_0: 5427898680225628579
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

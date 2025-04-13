@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Romance_Triss1(1)_0: -3850630671844631377
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

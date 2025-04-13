@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GetItOnGooglePlay_Badge_Web_color_English_0: 2970596511500369574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

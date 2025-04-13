@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bol_ognenniy_scorpion_0: 2021339017612015501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

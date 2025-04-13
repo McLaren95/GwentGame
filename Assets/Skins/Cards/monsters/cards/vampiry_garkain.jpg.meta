@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vampiry_garkain_0: 7331447635227613549
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      molodoy_poslannik_0: -1885563527207326689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

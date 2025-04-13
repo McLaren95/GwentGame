@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      podderjka_gavenkarov_0: -2841608389764300020
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

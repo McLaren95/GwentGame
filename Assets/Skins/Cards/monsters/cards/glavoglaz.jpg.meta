@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      glavoglaz_0: 8332385828027597774
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

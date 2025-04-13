@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      leto_iz_Gyleti_0: -5910950627024432832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

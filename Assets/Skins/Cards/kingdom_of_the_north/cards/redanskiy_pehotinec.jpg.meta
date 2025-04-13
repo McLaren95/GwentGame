@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      redanskiy_pehotinec_0: 9192602939517514307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
