@@ -1,0 +1,110 @@
+!(function (w, d, p, u, a, t) {
+    "use strict";
+
+    const T0 = 1 * new Date();
+    const K_TTL = 'au_seg_ttl';
+    const K_DATA = 'au_seg_data';
+    const AU_SEG = {'segments': ['AU_SEG_ENTERTAI_11', 'AU_SEG_FANDOMGA', 'AU_SEG_ARENAOFV', 'AU_AUD_YYMFNQ', 'AU_AUD_DKNZAB', 'AU_SEG_OTHERINT_3', 'AU_SEG_TRENDSET_3', 'AU_SEG_FASTFOOD_33', 'AU_AUD_CQK80A', 'AU_SEG_1PTOPCRI', 'AU_AUD_LM3B4Z', 'AU_AUD_19BO35', 'AU_SEG_MADMAXRE', 'AU_AUD_17BHPU', 'AU_SEG_SCIFIMOV', 'AU_AUD_U6JQZL', 'AU_AUD_ARWN2O', 'AU_AUD_1R8J8E', 'AU_AUD_8W289Q', 'AU_SEG_AGE_45-54', 'AU_AUD_MJJ91R', 'AU_SEG_DEMOAGE5', 'AU_SEG_WARHAMME_1', 'AU_SEG_RETROGAM_1', 'AU_AUD_EMIMA7', 'AU_AUD_HKDLY4', 'AU_SEG_1PHARDCO_3', 'AU_SEG_1PMULTIP', 'AU_SEG_1PSTEAMT', 'AU_AUD_70JD11', 'AU_SEG_TRAVELAL_4', 'AU_AUD_ULEQRT', 'AU_AUD_NI5YXA', 'AU_SEG_1PPCEXCL', 'AU_AUD_DUFDR2', 'AU_SEG_TRAVELER', 'AU_SEG_BOOKLOVE', 'AU_SEG_STREAMER_3', 'AU_SEG_AGE25_25542', 'AU_SEG_1PGODZIL', 'AU_SEG_1PGAMESA', 'AU_SEG_MOVIELOV_24', 'AU_SEG_PCDESKTO', 'AU_SEG_HOMESCHO', 'AU_SEG_DEMOAGE1_2', 'AU_AUD_X86C3Q', 'AU_SEG_WARFRAME_1', 'AU_SEG_1PNETFLI', 'AU_SEG_1PTOPKID', 'AU_SEG_1PFANTAS', 'AU_SEG_1PACTION_1', 'AU_AUD_UVYYWZ', 'AU_SEG_PS5GAMER', 'AU_SEG_1PBUSINE', 'AU_SEG_VSBATTLE_1', 'AU_SEG_YUGIOHFA', 'AU_AUD_PTIKF1', 'AU_SEG_1PHITBUY_1', 'AU_SEG_1PDUNGEO', 'AU_SEG_YOUTUBEF', 'AU_SEG_ZENLESSZ_1', 'AU_AUD_XVRZX5', 'AU_SEG_1PHACKAN', 'AU_SEG_MOVIELOV', 'AU_SEG_AUSSIEPE', 'AU_SEG_DIYTOOLS', 'AU_SEG_LATENIGHTTV', 'AU_SEG_PROTAGON_1', 'AU_AUD_VMQ5V7', 'AU_SEG__7628144', 'AU_SEG_1PSTREAM_2', 'AU_SEG_SCIENCEM', 'AU_AUD_2HA2X2', 'AU_AUD_BZ2GUL', 'AU_SEG_1PMOVIEB', 'AU_AUD_9ALLJC', 'AU_SEG_ZELDAFAN', 'AU_SEG_VIRTUALY_1', 'AU_SEG_1PSTREAM', 'AU_AUD_82IG5Z', 'AU_SEG_WOWPEDIA_1', 'AU_SEG_1PYAKUZA', 'AU_AUD_J5FPSG', 'AU_SEG_1PLOOTER', 'AU_AUD_4VL3DN', 'AU_SEG_GENDER_MALE', 'AU_SEG_GROCERYB', 'AU_AUD_ZFWJDA', 'AU_SEG_OUTDOORH', 'AU_AUD_764W9L', 'AU_AUD_OJWO2Q', 'AU_AUD_RQ2SRD', 'AU_SEG_GEOAUTRA', 'AU_AUD_B2MRQS', 'AU_AUD_KST5U8', 'AU_SEG_WITCHERF', 'AU_SEG_AGE_55-64', 'AU_SEG_DEMOGEND_2', 'AU_SEG_1PCOOPGA', 'AU_SEG_TRAVEL_36', 'AU_AUD_0TQA5U', 'AU_SEG_DEMOGEND_4', 'AU_AUD_FZBGST', 'AU_SEG_AGE_25-54']};
+
+    function getTaggerId() {
+        try {
+            const item = localStorage.getItem('au/tid');
+            if (item !== null) {
+                const taggerId = JSON.parse(item);
+                return taggerId['v'];
+            }
+            return null;
+        }
+        catch (err) {
+            return null;
+        }
+    }
+
+    function getAudigentId() {
+        const fkey = '_au_1d=';
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; ++i) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(fkey) == 0) {
+                return c.substring(fkey.length, c.length);
+            }
+        }
+        return null;
+    }
+
+    function getCache() {
+        if (typeof (Storage) !== 'undefined') {
+            const ttl = parseInt(w.localStorage.getItem(K_TTL) || '0');
+            if (ttl > T0) {
+                return JSON.parse(w.localStorage.getItem(K_DATA));
+            }
+        }
+        return null;
+    }
+
+    function setCache(response) {
+        if (typeof (Storage) !== 'undefined' && response.segments.length > 0) {
+            const t1 = T0 + (5 * 60 * 1000);
+
+            w.localStorage.setItem(K_TTL, t1);
+            w.localStorage.setItem(K_DATA, JSON.stringify(response));
+        }
+    }
+
+    function responseHandler(response, withCache) {
+        // default behaviour saves segments in the window context
+        w.au_seg = response;
+
+        const t2 = 1 * new Date();
+        console.log('[Audigent/' + p + '] Segment Service > Response Time ' + (t2 - T0).toString() + ' millis');
+
+        // trigger custom event to notify other libraries that the data is ready
+        d.dispatchEvent(new CustomEvent('auSegReady', { 'detail': response }));
+
+        if (withCache) {
+            setCache(response);
+        }
+    }
+
+    const cres = getCache();
+    if (cres === null) {
+        console.log('[Audigent/' + p + '] Segment Service > Cache Miss');
+
+        responseHandler(AU_SEG, false);
+
+        u = 'https://' + u + '/api/v1/segments?url=' + encodeURIComponent(d.location.href) + '&partner_id=' + p;
+        a = getAudigentId();
+        if (typeof a === 'string') {
+            u = u + '&au_id=' + a;
+        }
+        t = getTaggerId();
+        if (typeof t === 'string') {
+            u = u + '&tagger_id=' + t;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.timeout = 3000;  // 3 secs
+        xhr.open('GET', u, true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                const nres = JSON.parse(xhr.responseText);
+                responseHandler(nres, true);
+            }
+        };
+        xhr.ontimeout = () => {
+            console.warn('[Audigent/' + p + '] Segment Service > Timeout');
+        }
+        xhr.onerror = () => {
+            console.warn('[Audigent/' + p + '] Segment Service > Invalid Response');
+        };
+        xhr.send(null);
+    } else {
+        console.log('[Audigent/' + p + '] Segment Service > Cache Hit');
+
+        responseHandler(cres, true);
+    }
+})(window, document, '158', 'seg.ad.gt');
