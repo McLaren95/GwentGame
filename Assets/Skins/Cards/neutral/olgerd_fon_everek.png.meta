@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      olgerd_fon_everek_0: -2526810774956913866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

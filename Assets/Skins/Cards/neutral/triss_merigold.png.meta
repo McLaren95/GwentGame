@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      triss_merigold_0: 6977267049794778164
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      foltest_jelezniy_vladica_0: -6917812843309754525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

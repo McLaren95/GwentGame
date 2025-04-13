@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      emiel_reggis_0: 11005922293175909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

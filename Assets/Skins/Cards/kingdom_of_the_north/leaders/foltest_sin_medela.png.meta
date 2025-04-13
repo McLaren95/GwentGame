@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      foltest_sin_medela_0: 4143625763772347940
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      foltest_predvoditel_severa_0: -1226301669218806657
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

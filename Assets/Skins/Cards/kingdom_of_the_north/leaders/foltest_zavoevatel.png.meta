@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      foltest_zavoevatel_0: 5368648103637926259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

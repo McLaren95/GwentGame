@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gunter_o_dim_0: 8788118150478291965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

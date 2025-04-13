@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      foltest_korol_temerii_0: 417944063309103411
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      zolvan_hivai_0: -7763877336014924964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
