@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public abstract class AbilityAbstract
+public abstract class AbilityAbstract : MonoBehaviour
 {
-
+    public string type;
     public abstract void useAbility();
 }
 
