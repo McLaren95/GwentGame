@@ -4,11 +4,18 @@ using System.Collections.Specialized;
 using UnityEngine;
 
 
-public class TypeMillitarty : MonoBehaviour
+public class TypeMillitary : ScriptableObject
 {
-    string type;
+    private int type;
 
-    public string set_type(int type)
+
+    public void setType(int type)
+    {
+        this.type = type;
+    }
+    
+
+    public string getType()
     {
         List<string> types = new List<string>
         {
@@ -18,14 +25,7 @@ public class TypeMillitarty : MonoBehaviour
         };
 
         return types[type];
-        //try
-        //{
-        //    return types[type];
-        //} catch (indexer)
-        //{
-        //    Console.Write("Не верный тип");
-        //    return "";
-        //}
+      
     }
 
 }

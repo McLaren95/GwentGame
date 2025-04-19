@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public abstract class AbilityAbstract : MonoBehaviour
+public abstract class AbilityAbstract : ScriptableObject
 {
-    public string type;
+    //public string type;
     public abstract void useAbility();
 }
 
@@ -71,10 +71,10 @@ public class AbilityScarecrow : AbilityAbstract
     public override void useAbility() { return; }
 }
 
-public class AbilityAx : AbilityAbstract
-{
-    public override void useAbility() { return; }
-}
+//public class AbilityAx : AbilityAbstract
+//{
+//    public override void useAbility() { return; }
+//}
 
 public class AbilityClearSkies : AbilityAbstract
 {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Fraction : MonoBehaviour
 {
@@ -20,39 +21,14 @@ public class Fraction : MonoBehaviour
 
     public List<Card> returnDecCards() { return this.dec_cards; }
 
-    private void createFraction(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders)
+
+   public void initialization(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders)
     {
-        GameObject _fraction = new GameObject(name);
-        _fraction.transform.SetParent(this.transform);
-
-        Fraction fraction = _fraction.GetComponent<Fraction>();
-
-        fraction.name_fraction = name;
-        fraction.passive_skill = skill;
-        fraction.cards_collection = cards;
-        fraction.cards_leaders = leaders;
+        this.name_fraction = name;
+        this.passive_skill = skill;
+        this.cards_leaders = leaders;
+        this.cards_collection = cards;
+     
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        PassiveSkillKingdomOfTheNorth skill_kingdom = new GameObject("PassiveKingdom").AddComponent<PassiveSkillKingdomOfTheNorth>();
-        PassiveSkillNilfgaard skill_nilfgaard = new GameObject("PassiveNilfgaard").AddComponent<PassiveSkillNilfgaard>();
-        PassiveSkillMonsters skill_monsters = new GameObject("PassiveMonsters").AddComponent<PassiveSkillMonsters>();
-        PassiveSkillScoiatael skill_scoiatael = new GameObject("PassiveScoiatael").AddComponent<PassiveSkillScoiatael>();
-
-        List<Card> card = new List<Card>();
-        List<LeaderAbstract> lead = new List<LeaderAbstract>();
-
-        createFraction("Королевства Севера", skill_kingdom, card, lead);
-        createFraction("Нильфгаард", skill_nilfgaard, card, lead);
-        createFraction("Чудовища", skill_monsters, card, lead);
-        createFraction("Скоя'таэли", skill_scoiatael, card, lead);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class PassiveSkillAbstract : MonoBehaviour
+public abstract class PassiveSkillAbstract : ScriptableObject
 {
     public string type;
     public abstract void usePassiveSkill();
@@ -11,11 +11,6 @@ public class PassiveSkillKingdomOfTheNorth : PassiveSkillAbstract
     public override void usePassiveSkill()
     {
         return;
-    }
-
-    void Start()
-    {
-
     }
 }
 
