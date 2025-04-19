@@ -35,7 +35,8 @@ public class CreateFractions : MonoBehaviour
             create_cards.createCardKingdom(), create_cards.getLeadersKingdomOfTheNorth()));
         fractions.Add(createFraction("Нильфгаард", skill_nilfgaard, card, lead));
         fractions.Add(createFraction("Чудовища", skill_monsters, card, lead));
-        fractions.Add(createFraction("Скоя'таэли", skill_scoiatael, card, lead));
+        fractions.Add(createFraction("Скоя'таэли", skill_scoiatael, 
+            create_cards.createCardScoiatael(), create_cards.getLeadersScoiatael()));
     }
 
 }

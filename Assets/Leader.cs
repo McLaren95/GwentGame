@@ -80,3 +80,48 @@ public class LeaderKingdomOfTheNorth6 : LeaderAbstract
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public class LeaderScoiatael1 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
+
+public class LeaderScoiatael2 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
+
+public class LeaderScoiatael3 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
+
+public class LeaderScoiatael4 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
