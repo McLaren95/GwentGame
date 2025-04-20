@@ -199,12 +199,49 @@ public class CreateCards : MonoBehaviour
     }
 
 
-
     public List<Card> createCardMonsters()
     {
         List<Card> cards = new List<Card>(getNeutralCards());
 
         List<TypeMillitary> type_m = getTypeMillitary();
+
+        var a_no_effects = ScriptableObject.CreateInstance<AbilityNoEffect>();
+        var a_axe = ScriptableObject.CreateInstance<AbilityAxe>();
+        var a_double = ScriptableObject.CreateInstance<AbilityDouble>();
+
+        cards.Add(createCard("Бес", 6, "Assets/Skins/Cards/monsters/cards/bes.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Элементаль огня", 6, "Assets/Skins/Cards/monsters/cards/elemental_ognya.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Элементаль земли", 6, "Assets/Skins/Cards/monsters/cards/elemental_zemli.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Эндриага", 2, "Assets/Skins/Cards/monsters/cards/endriaga.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Гаргулья", 2, "Assets/Skins/Cards/monsters/cards/garguliya.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Главоглаз", 4, "Assets/Skins/Cards/monsters/cards/glavoglaz.jpg", type_m[0], a_double));
+        cards.Add(createCard("Грифон", 5, "Assets/Skins/Cards/monsters/cards/griffon.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Гуль", 1, "Assets/Skins/Cards/monsters/cards/gul.jpg", type_m[0], a_double));
+        cards.Add(createCard("Игоша", 4, "Assets/Skins/Cards/monsters/cards/igosha.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Кладбищенская баба", 5, "Assets/Skins/Cards/monsters/cards/kladbishenskaya_baba.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Ледяной Великан", 5, "Assets/Skins/Cards/monsters/cards/ledyanoy_velikan.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Моровая дева", 5, "Assets/Skins/Cards/monsters/cards/morovaya_deva.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Накер", 2, "Assets/Skins/Cards/monsters/cards/naker.jpg", type_m[0], a_double));
+        cards.Add(createCard("Огромный главоглаз", 6, "Assets/Skins/Cards/monsters/cards/ogromniy_glavoglaz.jpg", type_m[2], a_double));
+        cards.Add(createCard("Пугач", 5, "Assets/Skins/Cards/monsters/cards/pugach.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Туманник", 2, "Assets/Skins/Cards/monsters/cards/tymannik.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Вампиры: брукса", 4, "Assets/Skins/Cards/monsters/cards/vampiry_bruksa.jpg", type_m[0], a_double));
+        cards.Add(createCard("Вампиры: экимма", 4, "Assets/Skins/Cards/monsters/cards/vampiry_ecimma.jpg", type_m[0], a_double));
+        cards.Add(createCard("Вампиры: фледер", 4, "Assets/Skins/Cards/monsters/cards/vampiry_fleder.jpg", type_m[0], a_double));
+        cards.Add(createCard("Вампиры: гаркаин", 4, "Assets/Skins/Cards/monsters/cards/vampiry_garkain.jpg", type_m[0], a_double));
+        cards.Add(createCard("Вампиры: катакан", 4, "Assets/Skins/Cards/monsters/cards/vampiry_katacan.jpg", type_m[0], a_double));
+        cards.Add(createCard("Василиск", 2, "Assets/Skins/Cards/monsters/cards/vasilisk.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Ведьма: Кухарка", 6, "Assets/Skins/Cards/monsters/cards/vedma_kuharka.jpg", type_m[0], a_double));
+        cards.Add(createCard("Ведьма: Пряха", 6, "Assets/Skins/Cards/monsters/cards/vedma_prahua.jpg", type_m[0], a_double));
+        cards.Add(createCard("Ведьма: Шептуха", 6, "Assets/Skins/Cards/monsters/cards/vedma_sheptuha.jpg", type_m[0], a_double));
+        cards.Add(createCard("Вилохвост", 5, "Assets/Skins/Cards/monsters/cards/viloxvost.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Виверна", 2, "Assets/Skins/Cards/monsters/cards/viverna.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Волколак", 5, "Assets/Skins/Cards/monsters/cards/volkolap.jpg", type_m[0], a_no_effects));
+
+        cards.Add(createCard("Драуг", 10, "Assets/Skins/Cards/monsters/heroes/draugr.jpg", type_m[0], a_no_effects, 1));
+        cards.Add(createCard("Имлерих", 10, "Assets/Skins/Cards/monsters/heroes/implerix.jpg", type_m[0], a_no_effects, 1));
+        cards.Add(createCard("Кейран", 8, "Assets/Skins/Cards/monsters/heroes/keyran.jpg", type_m[0], a_axe, 1));
+        cards.Add(createCard("Леший", 10, "Assets/Skins/Cards/monsters/heroes/leshiy.jpg", type_m[1], a_no_effects, 1));
 
 
         return cards;
@@ -213,8 +250,17 @@ public class CreateCards : MonoBehaviour
 
     public List<LeaderAbstract> getLeadersMonsters()
     {
-
         List<LeaderAbstract> leaders = new List<LeaderAbstract>();
+
+        LeaderMonsters1 lead1 = new GameObject("Эредин Бреакк Глас Командир Дикой Охоты").AddComponent<LeaderMonsters1>();
+        LeaderMonsters2 lead2 = new GameObject("Эредин Бреакк Глас Король Aen Elle").AddComponent<LeaderMonsters2>();
+        LeaderMonsters3 lead3 = new GameObject("Эредин Бреакк Глас Король Aen Elle").AddComponent<LeaderMonsters3>();
+        LeaderMonsters4 lead4 = new GameObject("Эредин Бреакк Глас Убийца Оберона").AddComponent<LeaderMonsters4>();
+
+        leaders.Add(lead1.initialization("Эредин Бреакк Глас Командир Дикой Охоты", "Assets/Skins/Cards/monsters/leaders/eredin_breakk_glas_komandir_dikoy_ohoti.jpg"));
+        leaders.Add(lead2.initialization("Эредин Бреакк Глас Король Aen Elle", "Assets/Skins/Cards/monsters/leaders/eredin_breakk_glas_korol_aen_elle.jpg"));
+        leaders.Add(lead3.initialization("Эредин Бреакк Глас Король Aen Elle", "Assets/Skins/Cards/monsters/leaders/eredin_breakk_glas_korol_aen_elle_2.jpg"));
+        leaders.Add(lead4.initialization("Эредин Бреакк Глас Убийца Оберона", "Assets/Skins/Cards/monsters/leaders/eredin_breakk_glas_ybiyca_Oberona.jpg"));
 
         return leaders;
     }
@@ -268,4 +314,17 @@ public class CreateCards : MonoBehaviour
 
         return leaders;
     }
+    
+
+    public List<Card> createWeatherCards()
+    {
+        List<Card> cards = new List<Card>();
+
+        List<TypeMillitary> type_m = getTypeMillitary();
+
+
+        return cards;
+    }
+
+
 }

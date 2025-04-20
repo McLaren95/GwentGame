@@ -31,13 +31,38 @@ public class CreateFractions : MonoBehaviour
         List<LeaderAbstract> lead = new List<LeaderAbstract>();
         var card = create_cards.getNeutralCards();
 
-        fractions.Add(createFraction("Королевства Севера", skill_kingdom, 
-            create_cards.createCardKingdom(), create_cards.getLeadersKingdomOfTheNorth()));
-        fractions.Add(createFraction("Нильфгаард", skill_nilfgaard, 
-            create_cards.createCardNilfgaard(), create_cards.getLeadersNilfgaard()));
-        fractions.Add(createFraction("Чудовища", skill_monsters, card, lead));
-        fractions.Add(createFraction("Скоя'таэли", skill_scoiatael, 
-            create_cards.createCardScoiatael(), create_cards.getLeadersScoiatael()));
+        fractions.Add(
+            createFraction(
+                "Королевства Севера",
+                ScriptableObject.CreateInstance<PassiveSkillKingdomOfTheNorth>(), 
+                create_cards.createCardKingdom(), 
+                create_cards.getLeadersKingdomOfTheNorth())
+            );
+
+        fractions.Add(
+            createFraction(
+                "Нильфгаард",
+                ScriptableObject.CreateInstance<PassiveSkillNilfgaard>(), 
+                create_cards.createCardNilfgaard(), 
+                create_cards.getLeadersNilfgaard())
+            );
+
+        fractions.Add(
+            createFraction(
+                "Чудовища",
+                ScriptableObject.CreateInstance<PassiveSkillMonsters>(), 
+                create_cards.createCardMonsters(), 
+                create_cards.getLeadersMonsters())
+            );
+
+        fractions.Add(
+            createFraction(
+                "Скоя'таэли",
+                ScriptableObject.CreateInstance<PassiveSkillScoiatael>(), 
+                create_cards.createCardScoiatael(), 
+                create_cards.getLeadersScoiatael())
+            );
+
     }
 
 }

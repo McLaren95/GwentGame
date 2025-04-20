@@ -108,9 +108,37 @@ public class LeaderNilfgaard4 : LeaderAbstract
 
 
 
+public class LeaderMonsters1 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
+public class LeaderMonsters2 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
+public class LeaderMonsters3 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
+public class LeaderMonsters4 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
 
 
