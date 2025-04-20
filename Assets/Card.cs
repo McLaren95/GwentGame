@@ -1,32 +1,47 @@
 using UnityEngine;
 using System;
+using System.IO;
+using System.Runtime.Versioning;
+using System.Diagnostics;
 
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Card : MonoBehaviour
 {
+    private SpriteRenderer render;
+    private Sprite sprite;
 
-    public string name;
+    public string name_card;
     public int strenght;
-    public Sprite sprite;
-    TypeMillitarty type;
+    private int is_hero;
 
+    private Vector3 pos;
+    private TypeMillitary type;
+    private AbilityAbstract ability;
+    
 
-    void Start()
+    public void initialization(string name, int strenght, string path_to_image, TypeMillitary type, AbilityAbstract ability, int is_hero=0)
     {
-        Console.Write("123");  
+        this.name_card = name;
+        this.strenght = strenght;
+        this.type = type;
+        this.ability = ability;
+        this.is_hero = is_hero;
+       
+        loadSprite(path_to_image);
+        setupComponents();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void setupComponents()
     {
-        return;
+        render = GetComponent<SpriteRenderer>();
+        render.sprite = sprite;
+
     }
 
-    void OnMouseDrag() // Перетаскивание объекта
+    private void loadSprite(string path)
     {
-        // Движение объекта за курсором
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0; // Для 2D
-        transform.position = mousePos;
+        sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
     }
 }
+
