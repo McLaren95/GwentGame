@@ -65,6 +65,7 @@ public class CreateCards : MonoBehaviour
         return cards;
     }
 
+
     public List<Card> createCardKingdom()
     {
         List<Card> cards = new List<Card>(getNeutralCards());
@@ -136,6 +137,43 @@ public class CreateCards : MonoBehaviour
 
         List<TypeMillitary> type_m = getTypeMillitary();
 
+        var a_no_effects = ScriptableObject.CreateInstance<AbilityNoEffect>();
+        var a_stong_connection = ScriptableObject.CreateInstance<AbilityStrongConnection>();
+        var a_medic = ScriptableObject.CreateInstance<AbilityMedic>();
+        var a_spy = ScriptableObject.CreateInstance<AbilitySpy>();
+
+
+        cards.Add(createCard("Альбрых", 2, "Assets/Skins/Cards/Nilfgaard/cards/Albrih.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Ассире вар Анагыд", 6, "Assets/Skins/Cards/Nilfgaard/cards/Assire_var_Anagid.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Бол. огненный скорпион", 10, "Assets/Skins/Cards/Nilfgaard/cards/bol_ognenniy_scorpion.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Бригада \"Импера\"", 3, "Assets/Skins/Cards/Nilfgaard/cards/brigada_Impera.jpg", type_m[0], a_stong_connection));
+        cards.Add(createCard("Цинтия", 4, "Assets/Skins/Cards/Nilfgaard/cards/Cintiya.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Фрингилья Виго", 6, "Assets/Skins/Cards/Nilfgaard/cards/Fringilya_Vigo.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Кагыр Маур аэп Кеаллах", 6, "Assets/Skins/Cards/Nilfgaard/cards/Kagir_Mayr_aep_Keallax.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Кавалерия \"Наузикаа\"", 2, "Assets/Skins/Cards/Nilfgaard/cards/kavaleriya_Nayzikaa.jpg", type_m[0], a_stong_connection));
+        cards.Add(createCard("Лучник Бурой Хоругви", 10, "Assets/Skins/Cards/Nilfgaard/cards/luchnik_byroi_xorygvi.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Лучная поддержка", 1, "Assets/Skins/Cards/Nilfgaard/cards/Lychnaya_podderjka.jpg", type_m[1], a_medic));
+        cards.Add(createCard("Молодой посланник", 5, "Assets/Skins/Cards/Nilfgaard/cards/molodoy_poslannik.jpg", type_m[0], a_stong_connection));
+        cards.Add(createCard("Мортейзен", 3, "Assets/Skins/Cards/Nilfgaard/cards/Morteyzen.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Огненный скорпион", 5, "Assets/Skins/Cards/Nilfgaard/cards/ognenniy_scorpion.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Осадная поддержка", 0, "Assets/Skins/Cards/Nilfgaard/cards/osadnaya_podderjka.jpg", type_m[2], a_medic));
+        cards.Add(createCard("Путткаммер", 3, "Assets/Skins/Cards/Nilfgaard/cards/Putkammer.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Раинфарн", 4, "Assets/Skins/Cards/Nilfgaard/cards/Rainfarn.jpg", type_m[0], a_no_effects));
+        cards.Add(createCard("Ренуальд аэп Матсен", 5, "Assets/Skins/Cards/Nilfgaard/cards/Renyald_aep_Matsen.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Сапер", 6, "Assets/Skins/Cards/Nilfgaard/cards/saper.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Сгнившая петрария", 3, "Assets/Skins/Cards/Nilfgaard/cards/sgnivshaya_petrariya.jpg", type_m[2], a_no_effects));
+        cards.Add(createCard("Шилярд Фиц-Остерлен", 7, "Assets/Skins/Cards/Nilfgaard/cards/Shilyard_Fic_Osterlen.jpg", type_m[0], a_spy));
+        cards.Add(createCard("Стефан Скеллен", 9, "Assets/Skins/Cards/Nilfgaard/cards/Stefan_Skellen.jpg", type_m[0], a_spy));
+        cards.Add(createCard("Свирс", 2, "Assets/Skins/Cards/Nilfgaard/cards/Svirs.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Вангемар", 4, "Assets/Skins/Cards/Nilfgaard/cards/Vangemar.jpg", type_m[1], a_no_effects));
+        cards.Add(createCard("Ваттье де Ридо", 4, "Assets/Skins/Cards/Nilfgaard/cards/Vattie_de_Rido.jpg", type_m[0], a_spy));
+        cards.Add(createCard("Вреемде", 2, "Assets/Skins/Cards/Nilfgaard/cards/Vreemde.jpg", type_m[0], a_no_effects));
+
+        cards.Add(createCard("Лето из Гулеты", 10, "Assets/Skins/Cards/Nilfgaard/heroes/leto_iz_Gyleti.jpg", type_m[0], a_no_effects, 1));
+        cards.Add(createCard("Менно Коегоорн", 10, "Assets/Skins/Cards/Nilfgaard/heroes/Menno_Koegoorn.jpg", type_m[0], a_medic, 1));
+        cards.Add(createCard("Морвран Воорхис", 10, "Assets/Skins/Cards/Nilfgaard/heroes/Morvran_Voorxis.jpg", type_m[2], a_no_effects, 1));
+        cards.Add(createCard("Тибор Эггебрахт", 10, "Assets/Skins/Cards/Nilfgaard/heroes/Tibor_Eggebraxt.jpg", type_m[1], a_no_effects, 1));
+
 
         return cards;
     }
@@ -145,6 +183,17 @@ public class CreateCards : MonoBehaviour
     {
 
         List<LeaderAbstract> leaders = new List<LeaderAbstract>();
+
+        LeaderNilfgaard1 lead1 = new GameObject("Эмгыр вар Эмрейс Белое Пламя").AddComponent<LeaderNilfgaard1>();
+        LeaderNilfgaard2 lead2 = new GameObject("Эмгыр вар Эмрейс Император Нильфгаарда").AddComponent<LeaderNilfgaard2>();
+        LeaderNilfgaard3 lead3 = new GameObject("Эмгыр вар Эмрейс Йож из Эрленвальда").AddComponent<LeaderNilfgaard3>();
+        LeaderNilfgaard4 lead4 = new GameObject("Эмгыр вар Эмрейс Властелин Юга").AddComponent<LeaderNilfgaard4>();
+
+        leaders.Add(lead1.initialization("Эмгыр вар Эмрейс Белое Пламя", "Assets/Skins/Cards/Nilfgaard/leaders/Emgir_var_emreys_beloe_plamya.jpg"));
+        leaders.Add(lead2.initialization("Эмгыр вар Эмрейс Император Нильфгаарда", "Assets/Skins/Cards/Nilfgaard/leaders/Emgir_var_emreys_imperator_Nilfgaarda.jpg"));
+        leaders.Add(lead3.initialization("Эмгыр вар Эмрейс Йож из Эрленвальда", "Assets/Skins/Cards/Nilfgaard/leaders/Emgir_var_emreys_ioz_is_Erlevalda.jpg"));
+        leaders.Add(lead4.initialization("Эмгыр вар Эмрейс Властелин Юга", "Assets/Skins/Cards/Nilfgaard/leaders/Emgir_var_emreys_vlastelin_uga.jpg"));
+
 
         return leaders;
     }
@@ -202,7 +251,6 @@ public class CreateCards : MonoBehaviour
 
         return cards;
     }
-
 
     public List<LeaderAbstract> getLeadersScoiatael()
     {

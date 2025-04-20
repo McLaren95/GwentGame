@@ -72,7 +72,9 @@ public class LeaderKingdomOfTheNorth5 : LeaderAbstract
     }
 }
 
-public class LeaderKingdomOfTheNorth6 : LeaderAbstract
+
+
+public class LeaderNilfgaard1 : LeaderAbstract
 {
     public override void useAbility()
     {
@@ -80,11 +82,29 @@ public class LeaderKingdomOfTheNorth6 : LeaderAbstract
     }
 }
 
+public class LeaderNilfgaard2 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
+public class LeaderNilfgaard3 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
-
-
-
+public class LeaderNilfgaard4 : LeaderAbstract
+{
+    public override void useAbility()
+    {
+        return;
+    }
+}
 
 
 
