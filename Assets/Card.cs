@@ -30,7 +30,17 @@ public class Card : MonoBehaviour
        
         loadSprite(path_to_image);
         setupComponents();
+
+        transform.localScale = new Vector3(50.0f, 50.0f, 0.0f);
+        set_pos(0, 0, -150);
     }
+
+
+    public void set_pos(float x, float y, float z)
+    {
+        transform.position = new Vector3(x, y, z);
+    }
+
 
     private void setupComponents()
     {

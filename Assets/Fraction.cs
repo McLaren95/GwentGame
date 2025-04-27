@@ -10,9 +10,9 @@ public class Fraction : MonoBehaviour
     private LeaderAbstract leader;
     private StatsUserCards stats;
 
-    private List<Card> cards_collection = new List<Card>();
-    private List<Card> dec_cards = new List<Card>();
-    private List<LeaderAbstract> cards_leaders = new List<LeaderAbstract>();
+    public List<Card> cards_collection = new List<Card>();
+    public List<Card> dec_cards = new List<Card>();
+    public List<LeaderAbstract> cards_leaders = new List<LeaderAbstract>();
 
     private SpriteRenderer render;
     private Sprite sprite;
