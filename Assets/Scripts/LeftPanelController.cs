@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class LeftPanelController : MonoBehaviour
 {
@@ -51,6 +52,5 @@ public class LeftPanelController : MonoBehaviour
     public void OnPlayerPass()
     {
         Debug.Log("Игрок спасовал!");
-        // TODO: вызвать логику паса
     }
 }
