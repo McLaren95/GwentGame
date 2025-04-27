@@ -6,8 +6,9 @@ public class CreateFractions : MonoBehaviour
 {
     private Fraction fraction;
     [SerializeField] private CreateCards create_cards; 
-    private List<Fraction> fractions = new List<Fraction>(); 
-
+    private List<Fraction> fractions = new List<Fraction>();
+    public Fraction selected_fraction;
+    private int index_fraction;
 
 
     private Fraction createFraction(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders)
@@ -18,6 +19,37 @@ public class CreateFractions : MonoBehaviour
         fraction.transform.SetParent(transform);
         return fraction;
     }
+
+
+    public void nextFraction()
+    {
+        if (index_fraction == 3)
+        {
+            index_fraction = 0;
+        }
+        else
+        {
+            index_fraction++;
+        }
+
+
+        selected_fraction = fractions[index_fraction];
+    }
+
+    public void backFraction()
+    {
+        if (index_fraction == 0)
+        {
+            index_fraction = 3;
+        }
+        else
+        {
+            index_fraction--;
+        }
+
+        selected_fraction = fractions[index_fraction];
+    }
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,6 +94,9 @@ public class CreateFractions : MonoBehaviour
                 create_cards.createCardScoiatael(), 
                 create_cards.getLeadersScoiatael())
             );
+
+        index_fraction = 0;
+        selected_fraction = fractions[index_fraction];
 
     }
 
