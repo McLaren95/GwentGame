@@ -11,11 +11,11 @@ public class CreateFractions : MonoBehaviour
     private int index_fraction;
 
 
-    private Fraction createFraction(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders)
+    private Fraction createFraction(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path)
     {
         GameObject fractionObj = new GameObject(name);
         var fraction = fractionObj.AddComponent<Fraction>();
-        fraction.initialization(name, skill, cards, leaders);
+        fraction.initialization(name, skill, cards, leaders, path);
         fraction.transform.SetParent(transform);
         return fraction;
     }
@@ -23,6 +23,7 @@ public class CreateFractions : MonoBehaviour
 
     public void nextFraction()
     {
+        fractions[index_fraction].set_pos(0.0f, 400.0f, 1.0f);
         if (index_fraction == 3)
         {
             index_fraction = 0;
@@ -32,12 +33,13 @@ public class CreateFractions : MonoBehaviour
             index_fraction++;
         }
 
-
+        fractions[index_fraction].set_pos(0.0f, 400.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
     }
 
     public void backFraction()
     {
+        fractions[index_fraction].set_pos(0.0f, 400.0f, 1.0f);
         if (index_fraction == 0)
         {
             index_fraction = 3;
@@ -47,6 +49,7 @@ public class CreateFractions : MonoBehaviour
             index_fraction--;
         }
 
+        fractions[index_fraction].set_pos(0.0f, 400.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
     }
     
@@ -68,7 +71,8 @@ public class CreateFractions : MonoBehaviour
                 "Королевства Севера",
                 ScriptableObject.CreateInstance<PassiveSkillKingdomOfTheNorth>(), 
                 create_cards.createCardKingdom(), 
-                create_cards.getLeadersKingdomOfTheNorth())
+                create_cards.getLeadersKingdomOfTheNorth(),
+                "Assets/Skins/fractions/frac1.png")
             );
 
         fractions.Add(
@@ -76,7 +80,8 @@ public class CreateFractions : MonoBehaviour
                 "Нильфгаард",
                 ScriptableObject.CreateInstance<PassiveSkillNilfgaard>(), 
                 create_cards.createCardNilfgaard(), 
-                create_cards.getLeadersNilfgaard())
+                create_cards.getLeadersNilfgaard(),
+                "Assets/Skins/fractions/frac4.png")
             );
 
         fractions.Add(
@@ -84,7 +89,8 @@ public class CreateFractions : MonoBehaviour
                 "Чудовища",
                 ScriptableObject.CreateInstance<PassiveSkillMonsters>(), 
                 create_cards.createCardMonsters(), 
-                create_cards.getLeadersMonsters())
+                create_cards.getLeadersMonsters(),
+                "Assets/Skins/fractions/frac3.png")
             );
 
         fractions.Add(
@@ -92,10 +98,12 @@ public class CreateFractions : MonoBehaviour
                 "Скоя'таэли",
                 ScriptableObject.CreateInstance<PassiveSkillScoiatael>(), 
                 create_cards.createCardScoiatael(), 
-                create_cards.getLeadersScoiatael())
+                create_cards.getLeadersScoiatael(),
+                "Assets/Skins/fractions/frac2.png")
             );
 
         index_fraction = 0;
+        fractions[index_fraction].set_pos(0.0f, 400.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
 
     }
