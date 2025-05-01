@@ -10,7 +10,8 @@ public class CreateFractions : MonoBehaviour
     public Fraction selected_fraction;
     private int index_fraction;
 
-    [SerializeField] private CardController card_controller;
+    [SerializeField] private CardController collection;
+    [SerializeField] private CardController dec;
 
     private Fraction createFraction(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path)
     {
@@ -25,7 +26,8 @@ public class CreateFractions : MonoBehaviour
     public void nextFraction()
     {
         fractions[index_fraction].set_pos(0.0f, 450.0f, 1.0f);
-        card_controller.set_cards_to_pos(1);
+        collection.set_cards_to_pos(1);
+        dec.set_cards_to_pos(1);
         if (index_fraction == 3)
         {
             index_fraction = 0;
@@ -37,13 +39,15 @@ public class CreateFractions : MonoBehaviour
 
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
-        card_controller.set_cards_to_pos();
+        collection.set_cards_to_pos();
+        dec.set_cards_to_pos();
     }
 
     public void backFraction()
     {
         fractions[index_fraction].set_pos(0.0f, 450.0f, 1.0f);
-        card_controller.set_cards_to_pos(1);
+        collection.set_cards_to_pos(1);
+        dec.set_cards_to_pos(1);
         if (index_fraction == 0)
         {
             index_fraction = 3;
@@ -55,7 +59,8 @@ public class CreateFractions : MonoBehaviour
 
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
-        card_controller.set_cards_to_pos();
+        collection.set_cards_to_pos();
+        dec.set_cards_to_pos();
     }
     
 
@@ -108,7 +113,8 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
 
-        card_controller.set_cards_to_pos();
+        collection.set_cards_to_pos();
+        dec.set_cards_to_pos();
     }
 
 }

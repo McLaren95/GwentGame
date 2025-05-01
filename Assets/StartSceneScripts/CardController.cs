@@ -51,7 +51,7 @@ public class CardController : MonoBehaviour
                     i < 6 ? pos : 0);
             }
         }
-        index = 6;
+        index = size_type_collection > 5 ? 6 : size_type_collection;
     }
 
 
@@ -103,7 +103,7 @@ public class CardController : MonoBehaviour
             }
         }
 
-        index += iterations;
+        index += 6;
 
     }
 
@@ -158,7 +158,7 @@ public class CardController : MonoBehaviour
             }
         }
 
-        index -= iterations;
+        index -= 6;
     }
 
 
