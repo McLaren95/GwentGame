@@ -20,7 +20,17 @@ public class Card : MonoBehaviour
     private AbilityAbstract ability;
     
 
-    public void initialization(string name, int strenght, string path_to_image, TypeMillitary type, AbilityAbstract ability, int is_hero=0)
+    public void initialization(
+        string name, 
+        int strenght, 
+        string path_to_image, 
+        TypeMillitary type, 
+        AbilityAbstract ability, 
+        int is_hero = 0,
+        float x = 50.0f,
+        float y = 50.0f,
+        float z = 0.0f
+        )
     {
         this.name_card = name;
         this.strenght = strenght;
@@ -31,7 +41,7 @@ public class Card : MonoBehaviour
         loadSprite(path_to_image);
         setupComponents();
 
-        transform.localScale = new Vector3(50.0f, 50.0f, 0.0f);
+        transform.localScale = new Vector3(x, y, z);
         set_pos(0, 0, -150);
     }
 

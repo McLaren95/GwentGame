@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      govnushenko_card_0: 3377266124282879510
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
