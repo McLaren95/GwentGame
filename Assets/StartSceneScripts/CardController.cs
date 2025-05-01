@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -27,50 +28,137 @@ public class CardController : MonoBehaviour
     }
 
 
-    public void set_cards_to_pos()
+    public void set_cards_to_pos(int pos=-300)
     {
         this.size_ñ = fraction.selected_fraction.cards_collection.Count;
         this.size_d = fraction.selected_fraction.dec_cards.Count;
 
-            
-            for (int i = 0; i < size_ñ; i++)
+        int size_type_collection = side == "left" ? this.size_ñ : this.size_d;
+        for (int i = 0; i < size_type_collection; i++)
+        {
+            if (side == "left")
             {
                 fraction.selected_fraction.cards_collection[i].set_pos(
-                    side == "left" ? x[i % 3] : -x[i % 3], 
-                    y[i % 6 > 2 ? 1 : 0], 
-                    i < 6 ? -300 : 0);
+                    -x[i % 3],
+                    y[i % 6 > 2 ? 1 : 0],
+                    i < 6 ? pos : 0);
             }
+            else
+            {
+                fraction.selected_fraction.dec_cards[i].set_pos(
+                    x[i % 3],
+                    y[i % 6 > 2 ? 1 : 0],
+                    i < 6 ? pos : 0);
+            }
+        }
         index = 6;
     }
 
 
     public void next_cards()
     {
-        int size = side == "left" ? size_ñ - index : size_d - index;
-        int iterations = 0;
-        if (size < 6)
+        int size = side == "left" ? this.size_ñ : this.size_d;
+        size -= index;
+
+        if (index >= 6)
         {
+            for (int i = index - 6; i <= index && i < size; i++)
+            {
+                if (side == "left")
+                {
+                    fraction.selected_fraction.cards_collection[i].set_pos(
+                        -x[i % 3],
+                        y[i % 6 > 2 ? 1 : 0],
+                        1);
+                }
+                else
+                {
+                    fraction.selected_fraction.dec_cards[i].set_pos(
+                        x[i % 3],
+                        y[i % 6 > 2 ? 1 : 0],
+                        1);
+                }
+            }
+        }
+
+        int iterations = 6;
+        if (size < 5)
             iterations = size;
-        } 
-        else
+
+        for (int i = index; i <= index + iterations && i < size; i++)
         {
-            iterations = 6;
+            if (side == "left")
+            {
+                fraction.selected_fraction.cards_collection[i].set_pos(
+                    -x[i % 3],
+                    y[i % 6 > 2 ? 1 : 0],
+                    -300);
+            }
+            else
+            {
+                fraction.selected_fraction.dec_cards[i].set_pos(
+                    x[i % 3],
+                    y[i % 6 > 2 ? 1 : 0],
+                    -300);
+            }
         }
 
-        for (int i = 0; i < iterations; i++)
+        index += iterations;
+
+    }
+
+
+    public void back_cards()
+    {
+        int size = side == "left" ? this.size_ñ : this.size_d;
+        int _size = index - size;
+
+        if (index > 6)
         {
-            fraction.selected_fraction.cards_collection[index].set_pos(
-                side == "left" ? x[index % 3] : -x[index % 3],
-                y[i % 6 > 2 ? 1 : 0],
-                -300);
-
-            fraction.selected_fraction.cards_collection[index - i - 1].set_pos(
-                side == "left" ? x[index % 3] : -x[index % 3],
-                y[i % 6 > 2 ? 1 : 0],
-                0);
-
-            index++;
+            for (int i = 0; i < size; i++)
+            {
+                if (side == "left")
+                {
+                    fraction.selected_fraction.cards_collection[i].set_pos(
+                        -x[i % 3],
+                        y[i % 6 > 2 ? 1 : 0],
+                        1);
+                }
+                else
+                {
+                    fraction.selected_fraction.dec_cards[i].set_pos(
+                        x[i % 3],
+                        y[i % 6 > 2 ? 1 : 0],
+                        1);
+                }
+            }
         }
+
+        int iterations = 6;
+        if (index < 6)
+        {
+            iterations = index;
+        }
+
+        for (int i = index; i > index - iterations && i > -1; i--)
+        {
+            if (side == "left")
+            {
+                fraction.selected_fraction.cards_collection[i].set_pos(
+                    -x[i % 3],
+                    y[i % 6 > 2 ? 1 : 0],
+                    -300);
+            }
+            else
+            {
+                fraction.selected_fraction.dec_cards[i].set_pos(
+                    x[i % 3],
+                    y[i % 6 > 2 ? 1 : 0],
+                    -300);
+            }
+        }
+
+        index -= iterations;
     }
 
 
@@ -79,10 +167,6 @@ public class CardController : MonoBehaviour
         GameObject obj_fractions = GameObject.Find("CreateFractions");
         fraction = obj_fractions.GetComponent<CreateFractions>();
         index = 0;
-
-        //this.size_ñ = fraction.selected_fraction.cards_collection.Count;
-        //this.size_d = fraction.selected_fraction.dec_cards.Count;
-
     }
 
     // Update is called once per frame
@@ -91,3 +175,4 @@ public class CardController : MonoBehaviour
         
     }
 }
+

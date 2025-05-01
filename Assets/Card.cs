@@ -42,7 +42,7 @@ public class Card : MonoBehaviour
         setupComponents();
 
         transform.localScale = new Vector3(x, y, z);
-        set_pos(0, 0, -150);
+        set_pos(0, 0, 1);
     }
 
 

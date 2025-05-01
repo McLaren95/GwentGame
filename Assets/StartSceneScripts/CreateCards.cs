@@ -25,7 +25,6 @@ public class CreateCards : MonoBehaviour
         return new_card;
     }
 
-
     private List<TypeMillitary> getTypeMillitary()
     {
         List<TypeMillitary> types = new List<TypeMillitary>();
@@ -75,7 +74,6 @@ public class CreateCards : MonoBehaviour
         return cards;
     }
 
-
     public List<Card> createCardKingdom()
     {
         List<Card> cards = new List<Card>(getNeutralCards());
@@ -87,7 +85,6 @@ public class CreateCards : MonoBehaviour
         var a_stong_connection = ScriptableObject.CreateInstance<AbilityStrongConnection>();
         var a_spy = ScriptableObject.CreateInstance<AbilitySpy>();
         var a_axe = ScriptableObject.CreateInstance<AbilityAxe>();
-
 
         cards.Add(createCard("Баллиста", 6, "Assets/Skins/Cards/kingdom_of_the_north/cards/ballista.jpg", type_m[2], a_no_effects));
         cards.Add(createCard("Бьянка", 5, "Assets/Skins/Cards/kingdom_of_the_north/cards/bianka.jpg", type_m[0], a_no_effects));
@@ -122,7 +119,6 @@ public class CreateCards : MonoBehaviour
 
     public List<LeaderAbstract> getLeadersKingdomOfTheNorth()
     {
-
         List<LeaderAbstract> leaders = new List<LeaderAbstract>();
         LeaderKingdomOfTheNorth1 lead1 = new GameObject("Фольтест Железный Владыка").AddComponent<LeaderKingdomOfTheNorth1>();
         LeaderKingdomOfTheNorth2 lead2 = new GameObject("Фольтест Король Темерии").AddComponent<LeaderKingdomOfTheNorth2>();
@@ -137,9 +133,7 @@ public class CreateCards : MonoBehaviour
         leaders.Add(lead5.initialization("Фольтест Завоеватель", "Assets/Skins/Cards/kingdom_of_the_north/leaders/foltest_zavoevatel.png"));
 
         return leaders;
-
     }
-
 
     public List<Card> createCardNilfgaard()
     {
@@ -151,7 +145,6 @@ public class CreateCards : MonoBehaviour
         var a_stong_connection = ScriptableObject.CreateInstance<AbilityStrongConnection>();
         var a_medic = ScriptableObject.CreateInstance<AbilityMedic>();
         var a_spy = ScriptableObject.CreateInstance<AbilitySpy>();
-
 
         cards.Add(createCard("Альбрых", 2, "Assets/Skins/Cards/Nilfgaard/cards/Albrih.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Ассире вар Анагыд", 6, "Assets/Skins/Cards/Nilfgaard/cards/Assire_var_Anagid.jpg", type_m[1], a_no_effects));
@@ -184,10 +177,8 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard("Морвран Воорхис", 10, "Assets/Skins/Cards/Nilfgaard/heroes/Morvran_Voorxis.jpg", type_m[2], a_no_effects, 1));
         cards.Add(createCard("Тибор Эггебрахт", 10, "Assets/Skins/Cards/Nilfgaard/heroes/Tibor_Eggebraxt.jpg", type_m[1], a_no_effects, 1));
 
-
         return cards;
     }
-
 
     public List<LeaderAbstract> getLeadersNilfgaard()
     {
@@ -207,7 +198,6 @@ public class CreateCards : MonoBehaviour
 
         return leaders;
     }
-
 
     public List<Card> createCardMonsters()
     {
@@ -244,7 +234,7 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard("Ведьма: Кухарка", 6, "Assets/Skins/Cards/monsters/cards/vedma_kuharka.jpg", type_m[0], a_double));
         cards.Add(createCard("Ведьма: Пряха", 6, "Assets/Skins/Cards/monsters/cards/vedma_prahua.jpg", type_m[0], a_double));
         cards.Add(createCard("Ведьма: Шептуха", 6, "Assets/Skins/Cards/monsters/cards/vedma_sheptuha.jpg", type_m[0], a_double));
-        cards.Add(createCard("Вилохвост", 5, "Assets/Skins/Cards/monsters/cards/viloxvost.jpg", type_m[0], a_no_effects, 0, 70.0f, 70.0f, 0.0f));
+        cards.Add(createCard("Вилохвост", 5, "Assets/Skins/Cards/monsters/cards/viloxvost.jpg", type_m[0], a_no_effects, 0, 75.0f, 75.0f, 0.0f));
         cards.Add(createCard("Виверна", 2, "Assets/Skins/Cards/monsters/cards/viverna.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Волколак", 5, "Assets/Skins/Cards/monsters/cards/volkolap.jpg", type_m[0], a_no_effects));
 
@@ -253,10 +243,10 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard("Кейран", 8, "Assets/Skins/Cards/monsters/heroes/keyran.jpg", type_m[0], a_axe, 1));
         cards.Add(createCard("Леший", 10, "Assets/Skins/Cards/monsters/heroes/leshiy.jpg", type_m[1], a_no_effects, 1));
 
+        cards.Add(createCard("Гниющенко", 100, "Assets/Skins/govnushenko_card.jpg", type_m[2], a_no_effects, 1));
 
         return cards;
     }
-
 
     public List<LeaderAbstract> getLeadersMonsters()
     {
@@ -275,7 +265,6 @@ public class CreateCards : MonoBehaviour
         return leaders;
     }
 
-
     public List<Card> createCardScoiatael()
     {
         List<Card> cards = new List<Card>(getNeutralCards());
@@ -288,7 +277,7 @@ public class CreateCards : MonoBehaviour
         var a_axe = ScriptableObject.CreateInstance<AbilityAxe>();
 
         cards.Add(createCard("Деннис Кранмер", 6, "Assets/Skins/Cards/skoyataeli/cards/dennis_kranmer.jpg", type_m[0], a_no_effects));
-        cards.Add(createCard("Эльфский застрельщик", 2, "Assets/Skins/Cards/skoyataeli/cards/elfiyskiy_zastrelshik.jpg", type_m[1], a_double, 0, 70.0f, 70.0f, 0.0f));
+        cards.Add(createCard("Эльфский застрельщик", 2, "Assets/Skins/Cards/skoyataeli/cards/elfiyskiy_zastrelshik.jpg", type_m[1], a_double, 0, 75.0f, 75.0f, 0.0f));
         cards.Add(createCard("Ида Эмеан", 6, "Assets/Skins/Cards/skoyataeli/cards/ida_emean.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Кадет \"Врихедда\"", 4, "Assets/Skins/Cards/skoyataeli/cards/kadet_vrixedda.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Краснолюд-застрельщик", 3, "Assets/Skins/Cards/skoyataeli/cards/krasnolyd_zastrelshik.jpg", type_m[0], a_double));
@@ -300,7 +289,7 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard("Риордаин", 1, "Assets/Skins/Cards/skoyataeli/cards/riordain.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Торувьель", 2, "Assets/Skins/Cards/skoyataeli/cards/toryviel.jpg", type_m[1], a_no_effects));
 
-        cards.Add(createCard("ЭNтнэ", 10, "Assets/Skins/Cards/skoyataeli/heroes/eitne.jpg", type_m[1], a_no_effects, 1));
+        cards.Add(createCard("Эитнэ", 10, "Assets/Skins/Cards/skoyataeli/heroes/eitne.jpg", type_m[1], a_no_effects, 1));
         cards.Add(createCard("Иорвет", 10, "Assets/Skins/Cards/skoyataeli/heroes/iorvet.jpg", type_m[1], a_no_effects, 1));
         cards.Add(createCard("Изенгрим Фаоильтиарна", 10, "Assets/Skins/Cards/skoyataeli/heroes/izengim_faoiltiarna.jpg", type_m[1], a_no_effects, 1));
 
@@ -325,7 +314,6 @@ public class CreateCards : MonoBehaviour
         return leaders;
     }
     
-
     public List<Card> createWeatherCards()
     {
         List<Card> cards = new List<Card>();
@@ -335,6 +323,4 @@ public class CreateCards : MonoBehaviour
 
         return cards;
     }
-
-
 }

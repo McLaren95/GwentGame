@@ -3,23 +3,23 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class temp : MonoBehaviour
+public class BackCardsCollection : MonoBehaviour
 {
-    [SerializeField] private CardController create_fractions;
+    [SerializeField] private CardController card_controller;
     public Button button;
 
     public void OnButtonClick()
     {
-        if (create_fractions != null)
+        if (card_controller != null)
         {
-            create_fractions.set_cards_to_pos();
+            card_controller.back_cards();
         }
     }
 
     void Start()
     {
         GameObject obj_fractions = GameObject.Find("CollectionCards");
-        create_fractions = obj_fractions.GetComponent<CardController>();
+        card_controller = obj_fractions.GetComponent<CardController>();
         button.onClick.AddListener(OnButtonClick);
     }
 
