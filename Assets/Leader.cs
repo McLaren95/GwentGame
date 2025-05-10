@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class LeaderAbstract : MonoBehaviour
 {
+    public Fraction parentFraction;
+
     private SpriteRenderer render;
     private Sprite sprite;
 
@@ -15,7 +17,14 @@ public abstract class LeaderAbstract : MonoBehaviour
         loadSprite(path_to_image);
         setupComponents();
 
+        transform.localScale = new Vector3(40, 40, 1);
+
         return this;
+    }
+
+    public void set_pos(float x, float y, float z)
+    {
+        transform.position = new Vector3(x, y, z);
     }
 
     private void setupComponents()
@@ -23,11 +32,27 @@ public abstract class LeaderAbstract : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         render.sprite = sprite;
 
+        BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
     }
 
     private void loadSprite(string path)
     {
         sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
+    }
+
+    public void setParentFraction(Fraction fraction)
+    {
+        parentFraction = fraction;
+    }
+
+    public void OnMouseDown()
+    {
+        if (parentFraction != null)
+        {
+            if (parentFraction.cards_leaders.Contains(this))
+                parentFraction.next_leader();
+
+        }
     }
 
 }

@@ -12,6 +12,8 @@ public class CreateFractions : MonoBehaviour
 
     [SerializeField] private CardController collection;
     [SerializeField] private CardController dec;
+    [SerializeField] private CardController leaders;
+
 
     private Fraction createFraction(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path)
     {
@@ -28,6 +30,7 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, 1.0f);
         collection.set_cards_to_pos(1);
         dec.set_cards_to_pos(1);
+        leaders.set_leaders_to_pos(1);
         if (index_fraction == 3)
         {
             index_fraction = 0;
@@ -41,6 +44,7 @@ public class CreateFractions : MonoBehaviour
         selected_fraction = fractions[index_fraction];
         collection.set_cards_to_pos();
         dec.set_cards_to_pos();
+        leaders.set_leaders_to_pos();
     }
 
     public void backFraction()
@@ -48,6 +52,7 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, 1.0f);
         collection.set_cards_to_pos(1);
         dec.set_cards_to_pos(1);
+        leaders.set_leaders_to_pos(1);
         if (index_fraction == 0)
         {
             index_fraction = 3;
@@ -61,6 +66,7 @@ public class CreateFractions : MonoBehaviour
         selected_fraction = fractions[index_fraction];
         collection.set_cards_to_pos();
         dec.set_cards_to_pos();
+        leaders.set_leaders_to_pos();
     }
     
 
@@ -113,16 +119,23 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
 
+
+        
         for (int i = 0; i < fractions.Count; i++)
         {
             for (int j = 0; j < fractions[i].cards_collection.Count; j++)
             {
                 fractions[i].cards_collection[j].setParentFraction(fractions[i]);
             }
+            for (int j = 0; j < fractions[i].cards_leaders.Count; j++)
+            {
+                fractions[i].cards_leaders[j].setParentFraction(fractions[i]);
+            }
         }
 
         collection.set_cards_to_pos();
         dec.set_cards_to_pos();
+        leaders.set_leaders_to_pos();
     }
 
 }

@@ -10,6 +10,7 @@ public class CardController : MonoBehaviour
     private int size_ñ;
     private int size_d;
     private int index;
+    private int index_leader;
 
     private List<int> x = new List<int> { 520, 355, 190 };
     private List<int> y = new List<int> { 120, -180 };
@@ -107,7 +108,6 @@ public class CardController : MonoBehaviour
 
     }
 
-
     public void back_cards()
     {
         int size = side == "left" ? this.size_ñ : this.size_d;
@@ -161,6 +161,18 @@ public class CardController : MonoBehaviour
         index -= 6;
     }
 
+    public void set_leaders_to_pos(int pos = -300)
+    {
+        fraction.selected_fraction.cards_leaders[this.fraction.selected_fraction.index_leader].set_pos(0, 200, pos);
+        for (int i = 0; i < fraction.selected_fraction.cards_leaders.Count; i++)
+        {
+            if (this.fraction.selected_fraction.index_leader != i)
+            {
+                fraction.selected_fraction.cards_leaders[i].set_pos(0, 200, 0);
+            }
+        }
+        
+    }
 
     void Start()
     {

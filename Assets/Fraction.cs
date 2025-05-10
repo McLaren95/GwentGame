@@ -8,10 +8,11 @@ public class Fraction : MonoBehaviour
 {
     [SerializeField] private CardController collection;
     [SerializeField] private CardController dec;
+    [SerializeField] private CardController leader_controller;
 
     private string name_fraction;
     private PassiveSkillAbstract passive_skill;
-    private LeaderAbstract leader;
+    [SerializeField] public LeaderAbstract leader;
     private StatsUserCards stats;
 
     public List<Card> cards_collection = new List<Card>();
@@ -21,6 +22,7 @@ public class Fraction : MonoBehaviour
     private SpriteRenderer render;
     private Sprite sprite;
 
+    public int index_leader;
 
     public void usePassiveSkill() { return; }
 
@@ -34,7 +36,9 @@ public class Fraction : MonoBehaviour
         this.cards_leaders = leaders;
         this.cards_collection = cards;
 
-        
+        this.leader = cards_leaders[0];
+
+
         loadSprite(path_to_image);
         setupComponents();
 
@@ -63,7 +67,6 @@ public class Fraction : MonoBehaviour
 
     public void MoveToDeck(Card card)
     {
-        UnityEngine.Debug.Log($"Â 111: {card}");
         cards_collection.Remove(card);
         dec_cards.Add(card);
 
@@ -73,7 +76,6 @@ public class Fraction : MonoBehaviour
 
     public void MoveToCollection(Card card)
     {
-        UnityEngine.Debug.Log($"Â 222: {card}");
         dec_cards.Remove(card);
         cards_collection.Add(card);
 
@@ -81,9 +83,24 @@ public class Fraction : MonoBehaviour
         dec.set_cards_to_pos();
     }
 
+    public void next_leader()
+    {
+        this.leader.set_pos(0, 200, 0);
+        this.index_leader++;
+        if (this.index_leader == this.cards_leaders.Count)
+        {
+            this.index_leader = 0;
+        }
+        this.leader = this.cards_leaders[this.index_leader];
+        this.leader.set_pos(0, 200, -300);
+    }
+
     private void Start()
     {
         collection = GameObject.Find("CollectionCards").GetComponent<CardController>();
         dec = GameObject.Find("DecCards").GetComponent<CardController>();
+        leader_controller = GameObject.Find("SelectLeaders").GetComponent<CardController>();
+
+        index_leader = 0;
     }
 }
