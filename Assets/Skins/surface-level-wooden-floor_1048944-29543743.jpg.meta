@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      surface-level-wooden-floor_1048944-29543743_0: 639756592915221886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

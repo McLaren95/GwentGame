@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      brown-wooden-textured-flooring-background_53876-128537_0: 6033745649991882867
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

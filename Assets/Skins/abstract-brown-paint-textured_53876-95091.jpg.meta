@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      abstract-brown-paint-textured_53876-95091_0: -1949919209555584411
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

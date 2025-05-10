@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      melee_0: -1893995098325767188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

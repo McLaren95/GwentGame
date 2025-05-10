@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      black-concrete-wall-texture-background_1017-18193_0: 3372076112001104490
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

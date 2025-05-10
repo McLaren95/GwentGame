@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      close-up-wooden-plank-textured-background_53876-74993_0: 5885258926352096785
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
