@@ -2,9 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class Fraction : MonoBehaviour
 {
+    [SerializeField] private CardController collection;
+    [SerializeField] private CardController dec;
+
     private string name_fraction;
     private PassiveSkillAbstract passive_skill;
     private LeaderAbstract leader;
@@ -17,9 +21,6 @@ public class Fraction : MonoBehaviour
     private SpriteRenderer render;
     private Sprite sprite;
 
-
-    public void sendCardToDecFromCollection(Card card) { return; }
-    public void sendCardToCollectionFromDec(Card card) { return; }
 
     public void usePassiveSkill() { return; }
 
@@ -58,5 +59,31 @@ public class Fraction : MonoBehaviour
     private void loadSprite(string path)
     {
         sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
+    }
+
+    public void MoveToDeck(Card card)
+    {
+        UnityEngine.Debug.Log($"Â 111: {card}");
+        cards_collection.Remove(card);
+        dec_cards.Add(card);
+
+        collection.set_cards_to_pos();
+        dec.set_cards_to_pos();
+    }
+
+    public void MoveToCollection(Card card)
+    {
+        UnityEngine.Debug.Log($"Â 222: {card}");
+        dec_cards.Remove(card);
+        cards_collection.Add(card);
+
+        collection.set_cards_to_pos();
+        dec.set_cards_to_pos();
+    }
+
+    private void Start()
+    {
+        collection = GameObject.Find("CollectionCards").GetComponent<CardController>();
+        dec = GameObject.Find("DecCards").GetComponent<CardController>();
     }
 }

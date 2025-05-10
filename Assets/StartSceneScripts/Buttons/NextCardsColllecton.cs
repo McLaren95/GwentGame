@@ -18,8 +18,7 @@ public class NextCardsColllecton : MonoBehaviour
 
     void Start()
     {
-        GameObject obj_fractions = GameObject.Find("CollectionCards");
-        card_controller = obj_fractions.GetComponent<CardController>();
+
         button.onClick.AddListener(OnButtonClick);
     }
 

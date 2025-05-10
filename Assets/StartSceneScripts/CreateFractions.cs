@@ -113,6 +113,14 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
 
+        for (int i = 0; i < fractions.Count; i++)
+        {
+            for (int j = 0; j < fractions[i].cards_collection.Count; j++)
+            {
+                fractions[i].cards_collection[j].setParentFraction(fractions[i]);
+            }
+        }
+
         collection.set_cards_to_pos();
         dec.set_cards_to_pos();
     }

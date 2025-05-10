@@ -3,11 +3,14 @@ using System;
 using System.IO;
 using System.Runtime.Versioning;
 using System.Diagnostics;
+using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Card : MonoBehaviour
 {
+    public Fraction parentFraction;
+
     private SpriteRenderer render;
     private Sprite sprite;
 
@@ -57,11 +60,34 @@ public class Card : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         render.sprite = sprite;
 
+        BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
     }
 
     private void loadSprite(string path)
     {
         sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
+    }
+
+    private void Start()
+    {
+     
+
+    }
+
+    public void setParentFraction(Fraction fraction)
+    {
+        parentFraction = fraction;
+    }
+
+    public void OnMouseDown()
+    {
+        if (parentFraction != null)
+        {
+            if (parentFraction.cards_collection.Contains(this))
+                parentFraction.MoveToDeck(this);
+            else if (parentFraction.dec_cards.Contains(this))
+                parentFraction.MoveToCollection(this);
+        }
     }
 }
 

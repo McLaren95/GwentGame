@@ -167,6 +167,8 @@ public class CardController : MonoBehaviour
         GameObject obj_fractions = GameObject.Find("CreateFractions");
         fraction = obj_fractions.GetComponent<CreateFractions>();
         index = 0;
+
+
     }
 
     // Update is called once per frame
