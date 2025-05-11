@@ -21,7 +21,7 @@ public class Card : MonoBehaviour
     private Vector3 pos;
     private TypeMillitary type;
     private AbilityAbstract ability;
-    
+
 
     public void initialization(
         string name, 

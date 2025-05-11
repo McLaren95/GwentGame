@@ -11,9 +11,9 @@ public class Fraction : MonoBehaviour
     [SerializeField] private CardController leader_controller;
 
     private string name_fraction;
-    private PassiveSkillAbstract passive_skill;
+    public PassiveSkillAbstract passive_skill;
     [SerializeField] public LeaderAbstract leader;
-    private StatsUserCards stats;
+    public StatsUserCards stats;
 
     public List<Card> cards_collection = new List<Card>();
     public List<Card> dec_cards = new List<Card>();
@@ -28,8 +28,12 @@ public class Fraction : MonoBehaviour
 
     public List<Card> returnDecCards() { return this.dec_cards; }
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // Запрещаем уничтожение
+    }
 
-   public void initialization(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path_to_image)
+    public void initialization(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path_to_image)
     {
         this.name_fraction = name;
         this.passive_skill = skill;
