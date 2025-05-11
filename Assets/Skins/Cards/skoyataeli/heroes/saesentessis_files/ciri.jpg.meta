@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1d4b1a73326df574689c5a3022679bfc
+guid: 70e77df9e5fca854fb32cf576dabd550
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 687169006189614400
-    second: "\u0426\u0438\u0440\u0438_3_(\u0412\u0435\u0434\u044C\u043C\u0430\u043A_3)_0"
+      213: 4540289519673424550
+    second: ciri_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0426\u0438\u0440\u0438_3_(\u0412\u0435\u0434\u044C\u043C\u0430\u043A_3)_0"
+      name: ciri_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04517920290598900800000000000000
-      internalID: 687169006189614400
+      spriteID: 6aa309d3349520f30800000000000000
+      internalID: 4540289519673424550
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u0426\u0438\u0440\u0438_3_(\u0412\u0435\u0434\u044C\u043C\u0430\u043A_3)_0": 687169006189614400
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

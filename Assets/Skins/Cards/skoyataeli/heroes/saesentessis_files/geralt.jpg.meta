@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9201c7ba8b6189c43ae01d88bd5a6e74
+guid: 451328719dd763544bbd98714dcfd426
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1946319302414454123
-    second: "\u0413\u0435\u0440\u0430\u043B\u044C\u0442_\u04123_\u0440\u0435\u043D\u0434\u0435\u0440_0"
+      213: 6708310761253798939
+    second: geralt_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0413\u0435\u0440\u0430\u043B\u044C\u0442_\u04123_\u0440\u0435\u043D\u0434\u0435\u0440_0"
+      name: geralt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 592b91018e84df4e0800000000000000
-      internalID: -1946319302414454123
+      spriteID: b14867f5815b81d50800000000000000
+      internalID: 6708310761253798939
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u0413\u0435\u0440\u0430\u043B\u044C\u0442_\u04123_\u0440\u0435\u043D\u0434\u0435\u0440_0": -1946319302414454123
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
