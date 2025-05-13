@@ -17,7 +17,11 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] public LeaderAbstract leader;
+
     public List<Card> dec_cards = new List<Card>();
+    public List<Card> hand_cards = new List<Card>();
+    public List<Card> dead_cards = new List<Card>();
+
     public PassiveSkillAbstract passive_skill;
 
 
@@ -62,5 +66,13 @@ public class Player : MonoBehaviour
     {
         sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
     }
+
+
+    public void move_card_from_dec_to_hand(Card card)
+    {
+        dec_cards.Remove(card);
+        hand_cards.Add(card);
+    }
+
 
 }

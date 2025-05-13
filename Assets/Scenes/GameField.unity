@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 350266632}
   - component: {fileID: 350266631}
   m_Layer: 5
-  m_Name: FactionAvatar
+  m_Name: FactionAvatarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2084,7 +2084,7 @@ GameObject:
   - component: {fileID: 673176567}
   - component: {fileID: 673176568}
   m_Layer: 0
-  m_Name: DeckCards
+  m_Name: DeckCardsEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4625,7 +4625,7 @@ GameObject:
   - component: {fileID: 1238184825}
   - component: {fileID: 1238184824}
   m_Layer: 5
-  m_Name: FactionAvatar
+  m_Name: FactionAvatarPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5721,7 +5721,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627085237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbcb0504907bd834f9b10029efb310e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c1378e239ba38e439846c6332602d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1651374050
@@ -5735,7 +5735,7 @@ GameObject:
   - component: {fileID: 1651374051}
   - component: {fileID: 1651374052}
   m_Layer: 0
-  m_Name: Leader
+  m_Name: LeaderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6379,7 +6379,7 @@ GameObject:
   - component: {fileID: 1780666380}
   - component: {fileID: 1780666381}
   m_Layer: 0
-  m_Name: Leader
+  m_Name: LeaderPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6773,7 +6773,7 @@ GameObject:
   - component: {fileID: 2090729406}
   - component: {fileID: 2090729407}
   m_Layer: 0
-  m_Name: DeckHand
+  m_Name: HandDeckPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
