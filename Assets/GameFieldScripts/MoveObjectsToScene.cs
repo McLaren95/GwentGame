@@ -11,6 +11,7 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
         GameObject P1 = GameObject.Find("player_geralt");
         Player player1 = P1.GetComponent<Player>();
+
         for (int i = 0; i < player1.dec_cards.Count; i++)
         {
             player1.dec_cards[i].transform.SetParent(null);
@@ -24,9 +25,10 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
         GameObject P2 = GameObject.Find("player_ciri");
         Player player2 = P2.GetComponent<Player>();
+
         for (int i = 0; i < player2.dec_cards.Count; i++)
         {
-            MoveObjectToCardCount(player2.dec_cards[i].name_card, DeckCardsEnemy);
+            MoveObjectToCardCountSetNull(player2.dec_cards[i].name_card, DeckCardsEnemy);
         }
     }
 
@@ -46,13 +48,20 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
         GameObject HandDeckPlayer = GameObject.Find("HandDeckPlayer");
 
+        Vector3 old = HandDeckPlayer.transform.localScale;
+        HandDeckPlayer.transform.localScale = new Vector3(200, 200, 0);
+
         System.Random rand = new System.Random();
         for (int i = 0; i < 10; i++)
         {
             Card moving_card = player1.dec_cards[rand.Next(0, player1.dec_cards.Count)];
             player1.move_card_from_dec_to_hand(moving_card);
+            moving_card.set_pos(0.0f,0.0f,0.0f);
             MoveObjectToCardCountSetNull(moving_card.name_card, HandDeckPlayer);
+            moving_card._set_pos(-4.1f + i * 0.9f, 0.0f, 1.0f);
         }
+
+        HandDeckPlayer.transform.localScale = old;
     }
 
     private void move_random_10_cards_to_hand_player2()
@@ -60,41 +69,52 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject P2 = GameObject.Find("player_ciri");
         Player player2 = P2.GetComponent<Player>();
 
-        GameObject DeckCardsEnemy = GameObject.Find("DeckCardsEnemy");
-
         System.Random rand = new System.Random();
+
         for (int i = 0; i < 10; i++)
         {
             Card moving_card = player2.dec_cards[rand.Next(0, player2.dec_cards.Count)];
             player2.move_card_from_dec_to_hand(moving_card);
-            MoveObjectToCardCountSetNull(moving_card.name_card, DeckCardsEnemy);
         }
     }
 
     private void move_leaders()
     {
         GameObject LeaderPlayer = GameObject.Find("LeaderPlayer");
-        //GameObject LeaderEnemy = GameObject.Find("LeaderEnemy");
+        GameObject LeaderEnemy = GameObject.Find("LeaderEnemy");
+
         GameObject P1 = GameObject.Find("player_geralt");
         Player player1 = P1.GetComponent<Player>();
-        //GameObject P2 = GameObject.Find("player_ciri");
-        //Player player2 = P2.GetComponent<Player>();
+
+        GameObject P2 = GameObject.Find("player_ciri");
+        Player player2 = P2.GetComponent<Player>();
 
         MoveObjectToCardCount(player1.leader._name, LeaderPlayer);
-        //MoveObjectToCardCount(player2.leader._name, LeaderEnemy);
+        MoveObjectToCardCount(player2.leader._name, LeaderEnemy);
     }
+
+
+
+
+
 
 
     void Start()
     {
         move_dec_cards_player1();
-        //move_dec_cards_player2();
+        move_dec_cards_player2();
         move_players_to_pos();
         move_random_10_cards_to_hand_player1();
-        //move_random_10_cards_to_hand_player2();
+        move_random_10_cards_to_hand_player2();
         move_leaders();
 
     }
+
+
+
+
+
+
 
     void MoveObjectToCardCountSetNull(string objName, GameObject parent)
     {

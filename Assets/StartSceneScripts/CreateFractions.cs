@@ -6,7 +6,7 @@ public class CreateFractions : MonoBehaviour
 {
     private Fraction fraction;
     [SerializeField] private CreateCards create_cards; 
-    private List<Fraction> fractions = new List<Fraction>();
+    public List<Fraction> fractions = new List<Fraction>();
     public Fraction selected_fraction;
     private int index_fraction;
 

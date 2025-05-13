@@ -8,26 +8,24 @@ public class ButtonStart : MonoBehaviour
     public Button button;
 
 
+
     public void OnButtonClick()
     { 
         GameObject player1_ = new GameObject("player_geralt");
         var player1 = player1_.AddComponent<Player>();
-        player1.initialization(create_fractions.selected_fraction, "geralt", "Assets/Skins/Cards/skoyataeli/heroes/saesentessis_files/geralt.jpg");
+        player1.initialization(create_fractions.selected_fraction, "geralt", "Assets/Skins/StartScene/photo_2025-04-26_19-14-35.png");
+
 
 
         GameObject player2_ = new GameObject("player_ciri");
         var player2 = player2_.AddComponent<Player>();
-        player2.initialization(create_fractions.selected_fraction, "ciri", "Assets/Skins/Cards/skoyataeli/heroes/saesentessis_files/ciri.jpg");
+        create_fractions.nextFraction();
+        for(int i = 0; i < create_fractions.selected_fraction.cards_collection.Count; i++)
+        {
+            create_fractions.selected_fraction.MoveToDeck(create_fractions.selected_fraction.cards_collection[i]);
+        }
+        player2.initialization(create_fractions.selected_fraction, "ciri", "Assets/Skins/StartScene/photo_2025-04-26_19-14-35.png");
 
-        //for (int i = 0; i < create_fractions.selected_fraction.dec_cards.Count; i++)
-        //{
-        //    DontDestroyOnLoad(create_fractions.selected_fraction.dec_cards[i]);
-        //}
-
-        //for (int i = 0; i < create_fractions.selected_fraction.dec_cards.Count; i++)
-        //{
-        //    DontDestroyOnLoad(create_fractions.selected_fraction.dec_cards[i]);
-        //}
 
         SceneManager.LoadScene("GameField");
     }

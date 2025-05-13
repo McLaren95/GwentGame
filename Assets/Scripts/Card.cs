@@ -54,6 +54,15 @@ public class Card : MonoBehaviour
         transform.position = new Vector3(x, y, z);
     }
 
+    public void _set_pos(float x, float y, float z)
+    {
+        transform.localPosition = new Vector3(x, y, z);
+    }
+
+    public void _set_scale(float x, float y, float z)
+    {
+        transform.localScale = new Vector3(x, y, z);
+    }
 
     private void setupComponents()
     {
