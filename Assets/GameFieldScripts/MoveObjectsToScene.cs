@@ -32,14 +32,26 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         }
     }
 
+
+
+
+
+
     private void move_players_to_pos()
     {
         GameObject FactionAvatarPlayer = GameObject.Find("FactionAvatarPlayer");
         GameObject FactionAvatarEnemy = GameObject.Find("FactionAvatarEnemy");
 
+
         MoveObjectToCardCount("player_geralt", FactionAvatarPlayer);
         MoveObjectToCardCount("player_ciri", FactionAvatarEnemy);
     }
+
+
+
+
+
+
 
     private void move_random_10_cards_to_hand_player1()
     {
@@ -83,14 +95,24 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject LeaderPlayer = GameObject.Find("LeaderPlayer");
         GameObject LeaderEnemy = GameObject.Find("LeaderEnemy");
 
+        Vector3 old1 = LeaderPlayer.transform.localScale;
+        LeaderPlayer.transform.localScale = new Vector3(150f, 200f, 0f);
+        Vector3 old2 = LeaderEnemy.transform.localScale;
+        LeaderEnemy.transform.localScale = new Vector3(150f, 200f, 0f);
+
         GameObject P1 = GameObject.Find("player_geralt");
         Player player1 = P1.GetComponent<Player>();
+       
 
         GameObject P2 = GameObject.Find("player_ciri");
         Player player2 = P2.GetComponent<Player>();
 
         MoveObjectToCardCount(player1.leader._name, LeaderPlayer);
         MoveObjectToCardCount(player2.leader._name, LeaderEnemy);
+        player1.leader._set_pos(0.0f, 0.0f, 0.0f);
+        player2.leader._set_pos(0.0f, 0.0f, 0.0f);
+        LeaderPlayer.transform.localScale = old1;
+        LeaderEnemy.transform.localScale = old2;
     }
 
 

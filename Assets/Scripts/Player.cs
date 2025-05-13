@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
         this.passive_skill = fraction.passive_skill;
         DontDestroyOnLoad(this.passive_skill);
 
-        setupComponents();
         loadSprite(path);
+        setupComponents();
     }
 
 
