@@ -1,29 +1,30 @@
-using System.Diagnostics;
-using UnityEngine;
+//using UnityEngine;
+//using UnityEngine.SceneManagement;
 
-public class GameFieldController : MonoBehaviour
-{
-    public Player player1;
-    public Player player2;
+//public class MoveObjectsToCardCount : MonoBehaviour
+//{
+//    void Start()
+//    {
+//        // Находим целевой CardCount (первый в иерархии)
+//        GameObject cardCount = GameObject.Find("CardCount");
 
-    public void set_cards_player1()
-    {
-        
-    }
+//        if (cardCount != null)
+//        {
+//            // Переносим объекты из DontDestroyOnLoad
+//            MoveObjectToCardCount("player_geralt", cardCount);
 
-    private void Awake()
-    {
-        player1 = GameObject.Find("player_geralt")?.GetComponent<Player>();
-        player2 = GameObject.Find("player_ciri")?.GetComponent<Player>();
+//        }
+//    }
 
-
-    }
-
-    void Start()
-    {
-
-
-    }
-
-
-}
+//    void MoveObjectToCardCount(string objName, GameObject parent)
+//    {
+//        GameObject obj = GameObject.Find(objName);
+//        if (obj != null)
+//        {
+//            // Переносим объект в текущую сцену
+//            SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
+//            // Делаем дочерним для CardCount
+//            obj.transform.SetParent(parent.transform);
+//        }
+//    }
+//}

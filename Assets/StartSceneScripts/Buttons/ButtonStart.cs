@@ -19,10 +19,10 @@ public class ButtonStart : MonoBehaviour
         var player2 = player2_.AddComponent<Player>();
         player2.initialization(create_fractions.selected_fraction, "ciri", "Assets/Skins/Cards/skoyataeli/heroes/saesentessis_files/ciri.jpg");
 
-        for (int i = 0; i < create_fractions.selected_fraction.dec_cards.Count; i++)
-        {
-            DontDestroyOnLoad(create_fractions.selected_fraction.dec_cards[i]);
-        }
+        //for (int i = 0; i < create_fractions.selected_fraction.dec_cards.Count; i++)
+        //{
+        //    DontDestroyOnLoad(create_fractions.selected_fraction.dec_cards[i]);
+        //}
 
         //for (int i = 0; i < create_fractions.selected_fraction.dec_cards.Count; i++)
         //{
