@@ -22,13 +22,15 @@ public class Card : MonoBehaviour
     private TypeMillitary type;
     private AbilityAbstract ability;
 
+    private Player owner;
+
 
     public void initialization(
-        string name, 
-        int strenght, 
-        string path_to_image, 
-        TypeMillitary type, 
-        AbilityAbstract ability, 
+        string name,
+        int strenght,
+        string path_to_image,
+        TypeMillitary type,
+        AbilityAbstract ability,
         int is_hero = 0,
         float x = 50.0f,
         float y = 50.0f,
@@ -40,7 +42,7 @@ public class Card : MonoBehaviour
         this.type = type;
         this.ability = ability;
         this.is_hero = is_hero;
-       
+
         loadSprite(path_to_image);
         setupComponents();
 
@@ -79,7 +81,7 @@ public class Card : MonoBehaviour
 
     private void Start()
     {
-     
+
 
     }
 
@@ -88,6 +90,15 @@ public class Card : MonoBehaviour
         parentFraction = fraction;
     }
 
+    public void set_player(Player player)
+    {
+        this.owner = player;
+    }
+
+    public int get_strenght()
+    {
+        return this.strenght;
+    }
     public void OnMouseDown()
     {
         if (parentFraction != null)
@@ -96,6 +107,35 @@ public class Card : MonoBehaviour
                 parentFraction.MoveToDeck(this);
             else if (parentFraction.dec_cards.Contains(this))
                 parentFraction.MoveToCollection(this);
+        }
+    }
+
+    public void OnMouseUpAsButton()
+    {
+        if (parentFraction == null)
+        {
+            string type_millitary = this.type.GetType().ToString();
+            string name_line = "";
+
+            string plus_owner = this.owner.name_ == "player_geralt" ? "Player" : "Enemy";
+
+            if (type_millitary == "Ближний")
+            {
+                name_line = plus_owner + "MeleeRow";
+            }
+            else if (type_millitary == "Дальний")
+            {
+                name_line = plus_owner + "RangedRow";
+            }
+            else
+            {
+                name_line = plus_owner + "SiegeRow";
+            }
+
+            GameObject obj_line = GameObject.Find(name_line);
+            Line line = obj_line.GetComponent<Line>();
+
+            line.add_card(this);
         }
     }
 }

@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < this.dec_cards.Count; i++)
         {
             DontDestroyOnLoad(this.dec_cards[i]);
+            this.dec_cards[i].set_player(this);
         }
 
         this.passive_skill = fraction.passive_skill;

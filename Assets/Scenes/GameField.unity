@@ -5624,6 +5624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627085238}
   - component: {fileID: 1627085239}
+  - component: {fileID: 1627085240}
   m_Layer: 0
   m_Name: GameField
   m_TagString: Untagged
@@ -5677,6 +5678,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1378e239ba38e439846c6332602d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1627085240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627085237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9481901a978ae7f4a9b3ce77c0c87e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  round1: {fileID: 0}
+  round2: {fileID: 0}
+  round3: {fileID: 0}
 --- !u!1 &1651374050
 GameObject:
   m_ObjectHideFlags: 0

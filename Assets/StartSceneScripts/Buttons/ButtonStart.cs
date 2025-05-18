@@ -22,7 +22,9 @@ public class ButtonStart : MonoBehaviour
 
             GameObject player2_ = new GameObject("player_ciri");
             var player2 = player2_.AddComponent<Player>();
+
             create_fractions.nextFraction();
+
             for(int i = 0; i < create_fractions.selected_fraction.cards_collection.Count; i++)
             {
                 create_fractions.selected_fraction.MoveToDeck(create_fractions.selected_fraction.cards_collection[i]);
