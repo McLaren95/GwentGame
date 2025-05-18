@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ public class ButtonStart : MonoBehaviour
     { 
         GameObject player1_ = new GameObject("player_geralt");
         var player1 = player1_.AddComponent<Player>();
-        player1.initialization(create_fractions.selected_fraction, "geralt", "Assets/Skins/StartScene/photo_2025-04-26_19-14-35.png");
+        player1.initialization(create_fractions.selected_fraction, "geralt", "Assets/Skins/Cards/skoyataeli/heroes/saesentessis_files/geralt.jpg");
 
 
 
@@ -24,8 +25,8 @@ public class ButtonStart : MonoBehaviour
         {
             create_fractions.selected_fraction.MoveToDeck(create_fractions.selected_fraction.cards_collection[i]);
         }
-        player2.initialization(create_fractions.selected_fraction, "ciri", "Assets/Skins/StartScene/photo_2025-04-26_19-14-35.png");
-
+        player2.initialization(create_fractions.selected_fraction, "ciri", "Assets/Skins/Cards/skoyataeli/heroes/saesentessis_files/ciri.jpg");
+        //player2.transform.localScale = 
 
         SceneManager.LoadScene("GameField");
     }

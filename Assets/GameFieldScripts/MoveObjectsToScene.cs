@@ -12,11 +12,17 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject P1 = GameObject.Find("player_geralt");
         Player player1 = P1.GetComponent<Player>();
 
+        Vector3 old = DeckCardsPlayer.transform.localScale;
+        DeckCardsPlayer.transform.localScale = new Vector3(200f, 270f, 0f);
+
         for (int i = 0; i < player1.dec_cards.Count; i++)
         {
             player1.dec_cards[i].transform.SetParent(null);
-            MoveObjectToCardCount(player1.dec_cards[i].name_card, DeckCardsPlayer);
+            MoveCard(player1.dec_cards[i], DeckCardsPlayer);
+            player1.dec_cards[i].set_pos(0f, 0f, 0f);
         }
+
+        DeckCardsPlayer.transform.localScale = new Vector3(1f, 1.219077f, 1f);
     }
 
     private void move_dec_cards_player2()
@@ -26,10 +32,17 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject P2 = GameObject.Find("player_ciri");
         Player player2 = P2.GetComponent<Player>();
 
+        Vector3 old = DeckCardsEnemy.transform.localScale;
+        DeckCardsEnemy.transform.localScale = new Vector3(200f, 270f, 0f);
+
         for (int i = 0; i < player2.dec_cards.Count; i++)
         {
-            MoveObjectToCardCountSetNull(player2.dec_cards[i].name_card, DeckCardsEnemy);
+            MoveCard(player2.dec_cards[i], DeckCardsEnemy);
+            player2.dec_cards[i].set_pos(0f, 0f, 0f);
         }
+
+        DeckCardsEnemy.transform.localScale = new Vector3(1f, 1.219077f, 1f);
+
     }
 
 
@@ -41,7 +54,14 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
     {
         GameObject FactionAvatarPlayer = GameObject.Find("FactionAvatarPlayer");
         GameObject FactionAvatarEnemy = GameObject.Find("FactionAvatarEnemy");
+        GameObject player_geralt = GameObject.Find("player_geralt");
+        GameObject player_ciri = GameObject.Find("player_ciri");
 
+        player_geralt.transform.localPosition = new Vector3(0f, 0f, 0f);
+        player_ciri.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+        player_geralt.transform.localScale = new Vector3(130f, 130f, 10f);
+        player_ciri.transform.localScale = new Vector3(130f, 130f, 10f);
 
         MoveObjectToCardCount("player_geralt", FactionAvatarPlayer);
         MoveObjectToCardCount("player_ciri", FactionAvatarEnemy);
@@ -60,20 +80,15 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
         GameObject HandDeckPlayer = GameObject.Find("HandDeckPlayer");
 
-        Vector3 old = HandDeckPlayer.transform.localScale;
-        HandDeckPlayer.transform.localScale = new Vector3(200, 200, 0);
-
         System.Random rand = new System.Random();
         for (int i = 0; i < 10; i++)
         {
-            Card moving_card = player1.dec_cards[rand.Next(0, player1.dec_cards.Count)];
+            Card moving_card = player1.dec_cards[rand.Next(0, player1.dec_cards.Count - 1)];
             player1.move_card_from_dec_to_hand(moving_card);
             moving_card.set_pos(0.0f,0.0f,0.0f);
             MoveObjectToCardCountSetNull(moving_card.name_card, HandDeckPlayer);
             moving_card._set_pos(-4.1f + i * 0.9f, 0.0f, 1.0f);
         }
-
-        HandDeckPlayer.transform.localScale = old;
     }
 
     private void move_random_10_cards_to_hand_player2()
@@ -85,7 +100,7 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            Card moving_card = player2.dec_cards[rand.Next(0, player2.dec_cards.Count)];
+            Card moving_card = player2.dec_cards[rand.Next(0, player2.dec_cards.Count - 1)];
             player2.move_card_from_dec_to_hand(moving_card);
         }
     }
@@ -143,8 +158,16 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject obj = GameObject.Find(objName);
         if (obj != null)
         {
-            obj.transform.SetParent(null);
+            // Отвязываем объект от текущего родителя
+            Transform currentParent = obj.transform.parent;
+            if (currentParent != null)
+            {
+                obj.transform.SetParent(null);
+            }
+
+            // Перемещаем объект в активную сцену
             SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
+            // Привязываем объект к новому родителю
             obj.transform.SetParent(parent.transform);
         }
     }
@@ -154,8 +177,38 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject obj = GameObject.Find(objName);
         if (obj != null)
         {
+            // Отвязываем объект от текущего родителя
+            Transform currentParent = obj.transform.parent;
+            if (currentParent != null)
+            {
+                obj.transform.SetParent(null);
+            }
+
+            // Перемещаем объект в активную сцену
             SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
+
+            // Привязываем объект к новому родителю
             obj.transform.SetParent(parent.transform);
+        }
+    }
+
+    void MoveCard(Card card, GameObject parent)
+    {
+        if (card != null && card.gameObject != null)
+        {
+            // Отвязываем карту от текущего родителя
+            Transform currentParent = card.gameObject.transform.parent;
+            if (currentParent != null)
+            {
+                card.gameObject.transform.SetParent(null);
+            }
+
+            // Перемещаем карту в активную сцену
+            SceneManager.MoveGameObjectToScene(card.gameObject, SceneManager.GetActiveScene());
+
+            // Привязываем карту к новому родителю
+            card.gameObject.transform.SetParent(parent.transform);
+
         }
     }
 }
