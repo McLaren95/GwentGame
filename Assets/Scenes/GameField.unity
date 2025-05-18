@@ -6709,7 +6709,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2090729405}
   - component: {fileID: 2090729406}
-  - component: {fileID: 2090729407}
   - component: {fileID: 2090729408}
   m_Layer: 0
   m_Name: HandDeckPlayer
@@ -6792,18 +6791,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2090729407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090729404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aac18bb0d05ee342a487777a8e36280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2090729408
 MonoBehaviour:
   m_ObjectHideFlags: 0
