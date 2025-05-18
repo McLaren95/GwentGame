@@ -58,14 +58,14 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject player_geralt = GameObject.Find("player_geralt");
         GameObject player_ciri = GameObject.Find("player_ciri");
 
-        player_geralt.transform.localPosition = new Vector3(0f, 0f, 0f);
-        player_ciri.transform.localPosition = new Vector3(0f, 0f, 0f);
+        MoveObjectToCardCount("player_geralt", FactionAvatarPlayer);
+        MoveObjectToCardCount("player_ciri", FactionAvatarEnemy);
 
         player_geralt.transform.localScale = new Vector3(130f, 130f, 10f);
         player_ciri.transform.localScale = new Vector3(130f, 130f, 10f);
 
-        MoveObjectToCardCount("player_geralt", FactionAvatarPlayer);
-        MoveObjectToCardCount("player_ciri", FactionAvatarEnemy);
+        player_geralt.transform.localPosition = new Vector3(0f, 0f, 0f);
+        player_ciri.transform.localPosition = new Vector3(0f, 0f, 0f);
     }
 
 
