@@ -106,10 +106,16 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         Player player2 = P2.GetComponent<Player>();
 
         System.Random rand = new System.Random();
+        int cardsToMove = Mathf.Min(10, player2.dec_cards.Count);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < cardsToMove; i++)
         {
-            player2.move_card_from_dec_to_hand(player2.dec_cards[rand.Next(player2.dec_cards.Count)]);
+            if (player2.dec_cards.Count == 0)
+                break;
+
+            int index = rand.Next(player2.dec_cards.Count);
+            Card card = player2.dec_cards[index];
+            player2.move_card_from_dec_to_hand(card);
 
         }
     }
