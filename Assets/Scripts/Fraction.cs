@@ -10,7 +10,7 @@ public class Fraction : MonoBehaviour
     [SerializeField] private CardController dec;
     [SerializeField] private CardController leader_controller;
 
-    private string name_fraction;
+    public string name_fraction;
     public PassiveSkillAbstract passive_skill;
     [SerializeField] public LeaderAbstract leader;
     public StatsUserCards stats;
@@ -30,7 +30,7 @@ public class Fraction : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject); // Запрещаем уничтожение
+        DontDestroyOnLoad(gameObject);
     }
 
     public void initialization(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path_to_image)

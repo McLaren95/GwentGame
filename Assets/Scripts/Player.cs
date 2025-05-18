@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Sprite sprite;
 
     public string name_;
+    public string name_fraction;
 
     public Fraction fraction;
     public int health;
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject); // Запрещаем уничтожение
+        DontDestroyOnLoad(gameObject);
     }
 
     public void initialization(Fraction fraction, string name_, string path)
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         this.fraction = fraction;
         this.health = 2;
         this.total_score = 0;
-
+        this.name_fraction = fraction.name_fraction;
 
 
         this.leader = fraction.leader;
