@@ -1921,6 +1921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d94a344fadea4b4695d1152bccc7a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  factionNameText: {fileID: 57018275}
+  enemyCountText: {fileID: 757924303}
 --- !u!1 &602621512
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,7 +2637,7 @@ GameObject:
   - component: {fileID: 757924304}
   - component: {fileID: 757924303}
   m_Layer: 5
-  m_Name: CardCount
+  m_Name: EnemyCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4711,6 +4713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba64998296a8d8544bdf91e7b8c3c9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  factionNameText: {fileID: 1075557152}
+  playerCountText: {fileID: 233321387}
 --- !u!1 &1340174338
 GameObject:
   m_ObjectHideFlags: 0
@@ -6833,6 +6837,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 709595771}
-  - {fileID: 1690676365}
   - {fileID: 1627085238}
+  - {fileID: 1690676365}
   - {fileID: 1968801195}

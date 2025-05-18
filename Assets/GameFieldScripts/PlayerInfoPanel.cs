@@ -3,46 +3,27 @@ using TMPro;
 
 public class PlayerInfoPanel : MonoBehaviour
 {
+    public TMP_Text factionNameText;
+    public TMP_Text playerCountText;
+
+    private Player player;
+
     void Start()
     {
         GameObject playerObject = GameObject.Find("player_geralt");
 
         if (playerObject != null)
         {
-            Player player = playerObject.GetComponent<Player>();
+            player = playerObject.GetComponent<Player>();
 
             if (player != null)
             {
-                string playerFactionName = player.name_fraction;
+                // Подписываемся на событие изменения количества карт
+                player.OnCardCountChanged += UpdateCardCount;
 
-                GameObject playerInfoPanel = GameObject.Find("PlayerInfoPanel");
+                UpdateFactionName(player.name_fraction);
 
-                if (playerInfoPanel != null)
-                {
-                    Transform factionNameTransform = playerInfoPanel.transform.Find("FactionName");
-
-                    if (factionNameTransform != null)
-                    {
-                        TMP_Text textMeshPro = factionNameTransform.GetComponent<TMP_Text>();
-
-                        if (textMeshPro != null)
-                        {
-                            textMeshPro.text = playerFactionName;
-                        }
-                        else
-                        {
-                            Debug.LogError("TextMeshPro component not found on FactionName.");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError("FactionName object not found inside PlayerInfoPanel.");
-                    }
-                }
-                else
-                {
-                    Debug.LogError("PlayerInfoPanel object not found in the scene.");
-                }
+                UpdateCardCount(player.hand_cards.Count);
             }
             else
             {
@@ -52,6 +33,38 @@ public class PlayerInfoPanel : MonoBehaviour
         else
         {
             Debug.LogError("Player object 'player_geralt' not found.");
+        }
+    }
+
+    private void UpdateFactionName(string factionName)
+    {
+        if (factionNameText != null)
+        {
+            factionNameText.text = factionName;
+        }
+        else
+        {
+            Debug.LogError("FactionName TextMeshPro component not assigned.");
+        }
+    }
+
+    public void UpdateCardCount(int cardCount)
+    {
+        if (playerCountText != null)
+        {
+            playerCountText.text = $"{cardCount}";
+        }
+        else
+        {
+            Debug.LogError("PlayerCount TextMeshPro component not assigned.");
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (player != null)
+        {
+            player.OnCardCountChanged -= UpdateCardCount;
         }
     }
 }

@@ -3,46 +3,26 @@ using TMPro;
 
 public class EnemyInfoPanel : MonoBehaviour
 {
+    public TMP_Text factionNameText;
+    public TMP_Text enemyCountText;
+
+    private Player enemy;
+
     void Start()
     {
         GameObject enemyObject = GameObject.Find("player_ciri");
 
         if (enemyObject != null)
         {
-            Player enemy = enemyObject.GetComponent<Player>();
+            enemy = enemyObject.GetComponent<Player>();
 
             if (enemy != null)
             {
-                string enemyFactionName = enemy.name_fraction;
+                enemy.OnCardCountChanged += UpdateCardCount;
 
-                GameObject enemyInfoPanel = GameObject.Find("EnemyInfoPanel");
+                UpdateFactionName(enemy.name_fraction);
 
-                if (enemyInfoPanel != null)
-                {
-                    Transform factionNameTransform = enemyInfoPanel.transform.Find("EnemyFactionName");
-
-                    if (factionNameTransform != null)
-                    {
-                        TMP_Text textMeshPro = factionNameTransform.GetComponent<TMP_Text>();
-
-                        if (textMeshPro != null)
-                        {
-                            textMeshPro.text = enemyFactionName;
-                        }
-                        else
-                        {
-                            Debug.LogError("TextMeshPro component not found on EnemyFactionName.");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError("EnemyFactionName object not found inside EnemyInfoPanel.");
-                    }
-                }
-                else
-                {
-                    Debug.LogError("EnemyInfoPanel object not found in the scene.");
-                }
+                UpdateCardCount(enemy.hand_cards.Count);
             }
             else
             {
@@ -52,6 +32,38 @@ public class EnemyInfoPanel : MonoBehaviour
         else
         {
             Debug.LogError("Player object 'player_ciri' not found.");
+        }
+    }
+
+    private void UpdateFactionName(string factionName)
+    {
+        if (factionNameText != null)
+        {
+            factionNameText.text = factionName;
+        }
+        else
+        {
+            Debug.LogError("FactionName TextMeshPro component not assigned.");
+        }
+    }
+
+    public void UpdateCardCount(int cardCount)
+    {
+        if (enemyCountText != null)
+        {
+            enemyCountText.text = $"{cardCount}";
+        }
+        else
+        {
+            Debug.LogError("EnemyCount TextMeshPro component not assigned.");
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (enemy != null)
+        {
+            enemy.OnCardCountChanged -= UpdateCardCount;
         }
     }
 }

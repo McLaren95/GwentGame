@@ -23,6 +23,10 @@ public class Player : MonoBehaviour
     public List<Card> hand_cards = new List<Card>();
     public List<Card> dead_cards = new List<Card>();
 
+    // Событие для уведомления об изменении количества карт
+    public delegate void CardCountChanged(int newCount);
+    public event CardCountChanged OnCardCountChanged;
+
     public PassiveSkillAbstract passive_skill;
 
 
@@ -73,6 +77,12 @@ public class Player : MonoBehaviour
     {
         dec_cards.Remove(card);
         hand_cards.Add(card);
+        NotifyCardCountChanged();
+    }
+
+    private void NotifyCardCountChanged()
+    {
+        OnCardCountChanged?.Invoke(hand_cards.Count);
     }
 
 
