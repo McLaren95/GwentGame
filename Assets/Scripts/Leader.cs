@@ -18,6 +18,7 @@ public abstract class LeaderAbstract : MonoBehaviour
         setupComponents();
 
         transform.localScale = new Vector3(40, 40, 1);
+        transform.position = new Vector3(0, 0, 1);
 
         return this;
     }

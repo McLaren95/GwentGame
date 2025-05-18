@@ -130,12 +130,13 @@ public class CreateFractions : MonoBehaviour
             for (int j = 0; j < fractions[i].cards_leaders.Count; j++)
             {
                 fractions[i].cards_leaders[j].setParentFraction(fractions[i]);
+
             }
         }
 
         collection.set_cards_to_pos();
         dec.set_cards_to_pos();
-        leaders.set_leaders_to_pos();
+        selected_fraction.cards_leaders[selected_fraction.index_leader].set_pos(0, 200, -300);
     }
 
 }

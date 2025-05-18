@@ -89,7 +89,7 @@ public class Fraction : MonoBehaviour
 
     public void next_leader()
     {
-        this.leader.set_pos(0, 200, 0);
+        this.leader.set_pos(0, 200, 1);
         this.index_leader++;
         if (this.index_leader == this.cards_leaders.Count)
         {
