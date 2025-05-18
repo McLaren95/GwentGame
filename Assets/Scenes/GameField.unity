@@ -6777,6 +6777,9 @@ RectTransform:
 =======
   m_LocalPosition: {x: -766.2, y: -358.6, z: -0.05354923}
   m_LocalScale: {x: 500, y: 500, z: 1}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
