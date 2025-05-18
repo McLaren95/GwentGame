@@ -81,13 +81,16 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject HandDeckPlayer = GameObject.Find("HandDeckPlayer");
 
         System.Random rand = new System.Random();
+
         for (int i = 0; i < 10; i++)
         {
-            Card moving_card = player1.dec_cards[rand.Next(0, player1.dec_cards.Count - 1)];
-            player1.move_card_from_dec_to_hand(moving_card);
-            moving_card.set_pos(0.0f,0.0f,0.0f);
-            MoveObjectToCardCountSetNull(moving_card.name_card, HandDeckPlayer);
-            moving_card._set_pos(-4.1f + i * 0.9f, 0.0f, 1.0f);
+            player1.move_card_from_dec_to_hand(player1.dec_cards[rand.Next(0, player1.dec_cards.Count - 1)]);
+            MoveObjectToCardCountSetNull(player1.hand_cards[i].name_card, HandDeckPlayer);
+            player1.hand_cards[i]._set_pos(-4.1f + i * 0.9f, 0.0f, 1.0f);
+            //if (player1.dec_cards.Count >= 10)
+            //{
+            //    break;
+            //}
         }
     }
 
@@ -100,8 +103,8 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            Card moving_card = player2.dec_cards[rand.Next(0, player2.dec_cards.Count - 1)];
-            player2.move_card_from_dec_to_hand(moving_card);
+            player2.move_card_from_dec_to_hand(player2.dec_cards[rand.Next(0, player2.dec_cards.Count - 1)]);
+
         }
     }
 
