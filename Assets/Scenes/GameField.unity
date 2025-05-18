@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 233321388}
   - component: {fileID: 233321387}
   m_Layer: 5
-  m_Name: CardCount
+  m_Name: PlayerCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
