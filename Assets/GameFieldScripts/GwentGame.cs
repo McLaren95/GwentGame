@@ -22,9 +22,15 @@ public class GwentGame : MonoBehaviour
 
     private void create_first_round()
     {
+        GameObject p1 = GameObject.Find("player_geralt");
+        GameObject p2 = GameObject.Find("player_ciri");
+        Player player1 = p1.GetComponent<Player>();
+        Player player2 = p2.GetComponent<Player>();
+
         GameObject gwent = GameObject.Find("GameField");
         GameObject round = new GameObject("round1");
         round1 = round.AddComponent<GwentRound>();
+        round1.initialization(0, player1, player2);
         round1.transform.SetParent(gwent.transform);
     }
 

@@ -6435,7 +6435,7 @@ GameObject:
   - component: {fileID: 1782775047}
   - component: {fileID: 1782775048}
   m_Layer: 0
-  m_Name: 'RowMarker '
+  m_Name: RowMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

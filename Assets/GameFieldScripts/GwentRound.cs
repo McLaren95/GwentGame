@@ -17,7 +17,7 @@ public class GwentRound : MonoBehaviour
 
     public string state;
 
-    private void create_line(string player, int type_int)
+    private Line create_line(string player, int type_int)
     {
         var type_ = ScriptableObject.CreateInstance<TypeMillitary>();
         type_.setType(type_int);
@@ -42,6 +42,8 @@ public class GwentRound : MonoBehaviour
         GameObject obj_line = GameObject.Find(name_line);
         Line line = obj_line.AddComponent<Line>();
         line.initialization(type_);
+
+        return line;
     }
 
     public void initialization(
@@ -54,6 +56,14 @@ public class GwentRound : MonoBehaviour
         this.player1 = player1;
         this.player2 = player2;
         this.state = "не начался";
+
+        p1_line_melee = create_line("Player", 0);
+        p1_line_ranged = create_line("Player", 1);
+        p1_line_siege = create_line("Player", 2);
+
+        p2_line_melee = create_line("Enemy", 0);
+        p2_line_ranged = create_line("Enemy", 1);
+        p2_line_siege = create_line("Enemy", 2);
     }
 
    public void set_pass()

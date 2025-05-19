@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Versioning;
 using System.Diagnostics;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -16,13 +17,13 @@ public class Card : MonoBehaviour
 
     public string name_card;
     public int strenght;
-    private int is_hero;
+    public int is_hero;
 
     private Vector3 pos;
-    private TypeMillitary type;
-    private AbilityAbstract ability;
+    public TypeMillitary type;
+    public AbilityAbstract ability;
 
-    private Player owner;
+    public Player owner;
 
 
     public void initialization(
@@ -114,10 +115,21 @@ public class Card : MonoBehaviour
     {
         if (parentFraction == null)
         {
-            string type_millitary = this.type.GetType().ToString();
+            List<string> types = new List<string>
+        {
+            "Ближний",
+            "Дальний",
+            "Осадный"
+        };
+            var type_millitary = types[this.type.type];
             string name_line = "";
 
-            string plus_owner = this.owner.name_ == "player_geralt" ? "Player" : "Enemy";
+            string plus_owner = this.owner.name_ == "geralt" ? "Player" : "Enemy";
+
+            if (this.ability is AbilitySpy)
+            {
+                plus_owner = this.owner.name_ == "geralt" ? "Enemy" : "Player";
+            }
 
             if (type_millitary == "Ближний")
             {
@@ -136,6 +148,21 @@ public class Card : MonoBehaviour
             Line line = obj_line.GetComponent<Line>();
 
             line.add_card(this);
+
+            Transform row_lin = obj_line.transform.Find("RowMarker");
+
+            this.transform.SetParent(null);
+            this.transform.SetParent(row_lin.transform);
+
+            if (line.cards.Count < 5)
+            {
+                this._set_pos(-line.cards.Count * 1.0f, 0f, 2f);
+            }
+            else
+            {
+                this._set_pos((line.cards.Count - 5) * 1.0f, 0f, 2f);
+            }
+
         }
     }
 }

@@ -21,6 +21,7 @@ public class Line : MonoBehaviour
     {
         cards.Add(card);
         this.score += card.get_strenght();
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TypeMillitary : ScriptableObject
 {
-    private int type;
+    public int type;
 
 
     public void setType(int type)
