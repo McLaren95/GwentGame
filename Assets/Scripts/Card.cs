@@ -146,23 +146,29 @@ public class Card : MonoBehaviour
 
             GameObject obj_line = GameObject.Find(name_line);
             Line line = obj_line.GetComponent<Line>();
-
-            line.add_card(this);
-
-            Transform row_lin = obj_line.transform.Find("RowMarker");
-
-            this.transform.SetParent(null);
-            this.transform.SetParent(row_lin.transform);
-
-            if (line.cards.Count < 5)
+            if (line.cards.Count < 11)
             {
-                this._set_pos(-line.cards.Count * 1.0f, 0f, 2f);
-            }
-            else
-            {
-                this._set_pos((line.cards.Count - 5) * 1.0f, 0f, 2f);
-            }
+                line.add_card(this);
 
+                Transform row_lin = obj_line.transform.Find("RowMarker");
+
+                this.transform.SetParent(null);
+                this.transform.SetParent(row_lin.transform);
+
+                if (line.cards.Count < 6)
+                {
+                    this._set_pos(-line.cards.Count * 0.8f, 0f, 2f);
+                }
+                //else if (line.cards.Count == 7)
+                //{
+                //    this._set_pos(-1 * 0.8f, 0f, 2f);
+                //}
+                else
+                {
+                    this._set_pos((line.cards.Count - 6) * 0.8f, 0f, 2f);
+                }
+
+            }
         }
     }
 }
