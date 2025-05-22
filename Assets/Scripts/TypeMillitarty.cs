@@ -21,7 +21,8 @@ public class TypeMillitary : ScriptableObject
         {
             "Ближний",
             "Дальний",
-            "Осадный"
+            "Осадный",
+            "Погода"
         };
 
         return types[type];

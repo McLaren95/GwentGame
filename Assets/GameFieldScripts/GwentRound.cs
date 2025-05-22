@@ -8,6 +8,8 @@ public class GwentRound : MonoBehaviour
     public Line p1_line_ranged;
     public Line p1_line_siege;
 
+    public Line weather_line;
+
     public Player player2;
     public Line p2_line_melee;
     public Line p2_line_ranged;
@@ -31,6 +33,10 @@ public class GwentRound : MonoBehaviour
         else if (type_millitary == "Дальний")
         {
             name_line = player + "RangedRow";
+        }
+        else if (type_millitary == "Погода")
+        {
+            name_line = "WeatherField";
         }
         else
         {
@@ -57,6 +63,8 @@ public class GwentRound : MonoBehaviour
         p1_line_melee = create_line("Player", 0);
         p1_line_ranged = create_line("Player", 1);
         p1_line_siege = create_line("Player", 2);
+
+        weather_line = create_line("WeatherField", 3);
 
         p2_line_melee = create_line("Enemy", 0);
         p2_line_ranged = create_line("Enemy", 1);

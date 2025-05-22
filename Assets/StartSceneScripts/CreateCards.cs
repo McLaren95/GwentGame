@@ -32,13 +32,19 @@ public class CreateCards : MonoBehaviour
         var near = ScriptableObject.CreateInstance<TypeMillitary>();
         var far = ScriptableObject.CreateInstance<TypeMillitary>();
         var siege = ScriptableObject.CreateInstance<TypeMillitary>();
+        var погода = ScriptableObject.CreateInstance<TypeMillitary>();
+        var рог = ScriptableObject.CreateInstance<TypeMillitary>();
         near.setType(0);
         far.setType(1);
         siege.setType(2);
+        погода.setType(3);
+        рог.setType(4);
 
         types.Add(near);
         types.Add(far);
         types.Add(siege);
+        types.Add(погода);
+        types.Add(рог);
 
         return types;
     }
@@ -84,7 +90,7 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard("Мгла", 0, "Assets/Skins/Cards/neutral/mgla.jpg", type_m[3], mgla));
         cards.Add(createCard("Ясное небо", 0, "Assets/Skins/Cards/neutral/yasnoe_nebo.jpg", type_m[3], chistoe_nebo));
         cards.Add(createCard("Ливень", 0, "Assets/Skins/Cards/neutral/liven.jpg", type_m[3], liven));
-        cards.Add(createCard("Чучело", 0, "Assets/Skins/Cards/neutral/liven.jpg", type_m[0], chycelo));
+        cards.Add(createCard("Чучело", 0, "Assets/Skins/Cards/neutral/chychelo.jpg", type_m[0], chycelo));
         cards.Add(createCard("Казнь", 0, "Assets/Skins/Cards/neutral/kazn.jpg", type_m[0], kazn));
         cards.Add(createCard("Командирский рог", 0, "Assets/Skins/Cards/neutral/komandirskiy_rog.jpg", type_m[4], rog));
 

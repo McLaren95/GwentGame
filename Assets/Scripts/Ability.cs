@@ -71,10 +71,10 @@ public class AbilityScarecrow : AbilityAbstract
     public override void useAbility() { return; }
 }
 
-//public class AbilityAx : AbilityAbstract
-//{
-//    public override void useAbility() { return; }
-//}
+public class AbilityAx : AbilityAbstract
+{
+    public override void useAbility() { return; }
+}
 
 public class AbilityClearSkies : AbilityAbstract
 {

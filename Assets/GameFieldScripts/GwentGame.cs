@@ -79,6 +79,17 @@ public class GwentGame : MonoBehaviour
 
             round.p1_line_siege.cards.Remove(round.p1_line_siege.cards[i]);
         }
+
+        for (int i = 0; round.weather_line.cards.Count != 0;)
+        {
+            round.weather_line.cards[i].transform.SetParent(null);
+            round.weather_line.cards[i].transform.SetParent(PDeadCards);
+            round.weather_line.cards[i]._set_pos(-0.2f, 0.0f, 0.0f);
+
+            round.weather_line.cards.Remove(round.weather_line.cards[i]);
+        }
+
+        Destroy(round.weather_line);
         Destroy(round.p2_line_melee);
         Destroy(round.p2_line_ranged);
         Destroy(round.p2_line_siege);

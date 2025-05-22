@@ -144,15 +144,16 @@ public class Card : MonoBehaviour
             }
             else if (type_millitary == "Погода")
             {
-
-            }
-            else if (type_millitary == "Командирский рог")
-            {
-
+                name_line = "WeatherField";
             }
             else
             {
                 name_line = plus_owner + "SiegeRow";
+            }
+
+            if (type_millitary == "Командирский рог")
+            {
+
             }
 
             GameObject obj_line = GameObject.Find(name_line);
@@ -167,13 +168,35 @@ public class Card : MonoBehaviour
                 this.transform.SetParent(null);
                 this.transform.SetParent(row_lin.transform);
 
-                if (line.cards.Count < 6)
+                if (type_millitary == "Погода")
                 {
-                    this._set_pos(-line.cards.Count * 0.8f, 0f, 2f);
+                    if (line.cards.Count == 1)
+                    {
+                        this._set_pos(-line.cards.Count * 0.6f, 0f, 2f);
+                    }
+                    else if (line.cards.Count == 2)
+                    {
+                        this._set_pos(-line.cards.Count * 0f, 0f, 2f);
+                    }
+                    else
+                    {
+                        this._set_pos(line.cards.Count * 0.2f, 0f, 2f);
+                    }
+                }
+                else if (type_millitary == "Командирский рог")
+                {
+
                 }
                 else
                 {
-                    this._set_pos((line.cards.Count - 6) * 0.8f, 0f, 2f);
+                    if (line.cards.Count < 6)
+                    {
+                        this._set_pos(-line.cards.Count * 0.8f, 0f, 2f);
+                    }
+                    else
+                    {
+                        this._set_pos((line.cards.Count - 6) * 0.8f, 0f, 2f);
+                    }
                 }
 
                 owner.remove_card_in_hand(this); 
