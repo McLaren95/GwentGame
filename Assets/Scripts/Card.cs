@@ -111,15 +111,18 @@ public class Card : MonoBehaviour
         }
     }
 
+
     public void OnMouseUpAsButton()
     {
-        if (parentFraction == null)
+        if (parentFraction == null && owner.hand_cards.Contains(this))
         {
             List<string> types = new List<string>
         {
             "Ближний",
             "Дальний",
-            "Осадный"
+            "Осадный",
+            "Погода",
+            "Командирский рог"
         };
             var type_millitary = types[this.type.type];
             string name_line = "";
@@ -139,6 +142,14 @@ public class Card : MonoBehaviour
             {
                 name_line = plus_owner + "RangedRow";
             }
+            else if (type_millitary == "Погода")
+            {
+
+            }
+            else if (type_millitary == "Командирский рог")
+            {
+
+            }
             else
             {
                 name_line = plus_owner + "SiegeRow";
@@ -146,7 +157,8 @@ public class Card : MonoBehaviour
 
             GameObject obj_line = GameObject.Find(name_line);
             Line line = obj_line.GetComponent<Line>();
-            if (line.cards.Count < 11)
+
+            if (line.cards.Count < 11 && (!line.cards.Contains(this) || this.ability is AbilityStrongConnection))
             {
                 line.add_card(this);
 
@@ -159,16 +171,13 @@ public class Card : MonoBehaviour
                 {
                     this._set_pos(-line.cards.Count * 0.8f, 0f, 2f);
                 }
-                //else if (line.cards.Count == 7)
-                //{
-                //    this._set_pos(-1 * 0.8f, 0f, 2f);
-                //}
                 else
                 {
                     this._set_pos((line.cards.Count - 6) * 0.8f, 0f, 2f);
                 }
 
-            }
+                owner.remove_card_in_hand(this); 
+            }    
         }
     }
 }

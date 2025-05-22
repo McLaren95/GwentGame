@@ -7,6 +7,7 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
     public float holdDuration = 1f; // Время удержания кнопки (в секундах)
     private float holdTimer = 0f;   // Таймер удержания
     private bool isHolding = false; // Флаг удержания
+    public GwentGame gwent;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -21,6 +22,11 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
         isHolding = false;
         holdTimer = 0f;
         Debug.Log("Кнопка отпущена!");
+    }
+
+    void Start()
+    {
+        gwent = GameObject.Find("GameField").GetComponent<GwentGame>();
     }
 
     void Update()
@@ -58,7 +64,18 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
     private void PassTurn()
     {
-        // Логика пасования (например, передача хода противнику)
+        if (gwent.round == 1)
+        {
+            gwent.create_second_round();
+        }
+        else if (gwent.round == 2)
+        {
+            gwent.create_third_round();
+        }
+        else
+        {
+            gwent.end();
+        }
     }
 
     private void ResetHold()

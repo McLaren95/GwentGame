@@ -15,8 +15,6 @@ public class GwentRound : MonoBehaviour
 
     public int number_round;
 
-    public string state;
-
     private Line create_line(string player, int type_int)
     {
         var type_ = ScriptableObject.CreateInstance<TypeMillitary>();
@@ -55,7 +53,6 @@ public class GwentRound : MonoBehaviour
         this.number_round = number;
         this.player1 = player1;
         this.player2 = player2;
-        this.state = "не начался";
 
         p1_line_melee = create_line("Player", 0);
         p1_line_ranged = create_line("Player", 1);

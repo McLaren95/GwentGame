@@ -7,7 +7,7 @@ public class Line : MonoBehaviour
     public List<Card> cards;
     public TypeMillitary type;
 
-    private int score;
+    public int score;
 
 
     public void initialization(TypeMillitary type)
@@ -24,10 +24,11 @@ public class Line : MonoBehaviour
 
     }
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        this.score = 0;
     }
 
     // Update is called once per frame

@@ -81,6 +81,13 @@ public class Player : MonoBehaviour
         NotifyCardCountChanged();
     }
 
+    public void remove_card_in_hand(Card card)
+    {
+        hand_cards.Remove(card);
+        
+    }
+
+
     private void NotifyCardCountChanged()
     {
         OnCardCountChanged?.Invoke(hand_cards.Count);
