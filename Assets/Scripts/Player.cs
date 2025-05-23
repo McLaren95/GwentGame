@@ -23,12 +23,10 @@ public class Player : MonoBehaviour
     public List<Card> hand_cards = new List<Card>();
     public List<Card> dead_cards = new List<Card>();
 
-    // Событие для уведомления об изменении количества карт
     public delegate void CardCountChanged(int newCount);
     public event CardCountChanged OnCardCountChanged;
 
     public PassiveSkillAbstract passive_skill;
-
 
     private void Awake()
     {
@@ -61,7 +59,6 @@ public class Player : MonoBehaviour
         setupComponents();
     }
 
-
     private void setupComponents()
     {
         render = GetComponent<SpriteRenderer>();
@@ -73,7 +70,6 @@ public class Player : MonoBehaviour
         sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
     }
 
-
     public void move_card_from_dec_to_hand(Card card)
     {
         dec_cards.Remove(card);
@@ -84,14 +80,12 @@ public class Player : MonoBehaviour
     public void remove_card_in_hand(Card card)
     {
         hand_cards.Remove(card);
-        
+        NotifyCardCountChanged();
     }
-
 
     private void NotifyCardCountChanged()
     {
         OnCardCountChanged?.Invoke(hand_cards.Count);
     }
-
 
 }

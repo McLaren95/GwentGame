@@ -123,8 +123,6 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard("Принц Стеннис", 5, "Assets/Skins/Cards/kingdom_of_the_north/cards/princ_stennis.jpg", type_m[0], a_spy));
         cards.Add(createCard("Реданский пехотинец", 1, "Assets/Skins/Cards/kingdom_of_the_north/cards/redanskiy_pehotinec.jpg", type_m[0], a_no_effects));
         cards.Add(createCard("Рубайлы из Кринфрида", 5, "Assets/Skins/Cards/kingdom_of_the_north/cards/rubaily_iz_Krinfrida.jpg", type_m[1], a_stong_connection));
-        cards.Add(createCard("Рубайлы из Кринфрида", 5, "Assets/Skins/Cards/kingdom_of_the_north/cards/rubaily_iz_Krinfrida.jpg", type_m[1], a_stong_connection));
-        cards.Add(createCard("Рубайлы из Кринфрида", 5, "Assets/Skins/Cards/kingdom_of_the_north/cards/rubaily_iz_Krinfrida.jpg", type_m[1], a_stong_connection));
         cards.Add(createCard("Сабрина Глевиссиг", 4, "Assets/Skins/Cards/kingdom_of_the_north/cards/sabrina_glevissing.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Шеала де Тансервилль", 5, "Assets/Skins/Cards/kingdom_of_the_north/cards/seala_de_Tanservill.jpg", type_m[1], a_no_effects));
         cards.Add(createCard("Шелдон Скаггс", 4, "Assets/Skins/Cards/kingdom_of_the_north/cards/selfton_skaggs.jpg", type_m[1], a_no_effects));

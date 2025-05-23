@@ -18,7 +18,6 @@ public class PlayerInfoPanel : MonoBehaviour
 
             if (player != null)
             {
-                // Подписываемся на событие изменения количества карт
                 player.OnCardCountChanged += UpdateCardCount;
 
                 UpdateFactionName(player.name_fraction);

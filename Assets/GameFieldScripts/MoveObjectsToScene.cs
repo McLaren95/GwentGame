@@ -46,11 +46,6 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
 
     }
 
-
-
-
-
-
     private void move_players_to_pos()
     {
         GameObject FactionAvatarPlayer = GameObject.Find("FactionAvatarPlayer");
@@ -68,17 +63,11 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         player_ciri.transform.localPosition = new Vector3(0f, 0f, 0f);
     }
 
-
-
-
-
-
     private void move_random_10_cards_to_hand_player1()
     {
         GameObject P1 = GameObject.Find("player_geralt");
         Player player1 = P1.GetComponent<Player>();
         GameObject HandDeckPlayer = GameObject.Find("HandDeckPlayer");
-
 
         System.Random rand = new System.Random();
         int cardsToMove = Mathf.Min(10, player1.dec_cards.Count);
@@ -145,12 +134,6 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         LeaderEnemy.transform.localScale = old2;
     }
 
-
-
-
-
-
-
     void Start()
     {
         move_dec_cards_player1();
@@ -159,30 +142,19 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         move_random_10_cards_to_hand_player1();
         move_random_10_cards_to_hand_player2();
         move_leaders();
-
     }
-
-
-
-
-
-
 
     void MoveObjectToCardCountSetNull(string objName, GameObject parent)
     {
         GameObject obj = GameObject.Find(objName);
         if (obj != null)
         {
-            // Отвязываем объект от текущего родителя
             Transform currentParent = obj.transform.parent;
             if (currentParent != null)
             {
                 obj.transform.SetParent(null);
             }
-
-            // Перемещаем объект в активную сцену
             SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
-            // Привязываем объект к новому родителю
             obj.transform.SetParent(parent.transform);
         }
     }
@@ -192,17 +164,13 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
         GameObject obj = GameObject.Find(objName);
         if (obj != null)
         {
-            // Отвязываем объект от текущего родителя
             Transform currentParent = obj.transform.parent;
             if (currentParent != null)
             {
                 obj.transform.SetParent(null);
             }
-
-            // Перемещаем объект в активную сцену
             SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
 
-            // Привязываем объект к новому родителю
             obj.transform.SetParent(parent.transform);
         }
     }
@@ -211,17 +179,13 @@ public class MoveObjectsFromDontDestroyToScene : MonoBehaviour
     {
         if (card != null && card.gameObject != null)
         {
-            // Отвязываем карту от текущего родителя
             Transform currentParent = card.gameObject.transform.parent;
             if (currentParent != null)
             {
                 card.gameObject.transform.SetParent(null);
             }
-
-            // Перемещаем карту в активную сцену
             SceneManager.MoveGameObjectToScene(card.gameObject, SceneManager.GetActiveScene());
 
-            // Привязываем карту к новому родителю
             card.gameObject.transform.SetParent(parent.transform);
 
         }
