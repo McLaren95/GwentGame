@@ -133,6 +133,18 @@ public class GwentGame : MonoBehaviour
 
     }
 
+    private void set_winner()
+    {
+        if (this.winner.name_ == "geralt")
+        {
+            this.create_win("Assets/Skins/win/win.png");
+        }
+        else
+        {
+            this.create_win("Assets/Skins/win/los.png");
+        }
+    }
+
     public void create_round()
     {
         if (this.number_round != 0)
@@ -166,15 +178,7 @@ public class GwentGame : MonoBehaviour
         }
         else
         {
-            if (this.winner.name_ == "geralt")
-            {
-                this.create_win("Assets/Skins/win/win.png");
-            }
-            else 
-            {
-                this.create_win("Assets/Skins/win/los.png");
-            }
-                
+            this.set_winner();
         }
     }
 
@@ -188,14 +192,7 @@ public class GwentGame : MonoBehaviour
         }
         else
         {
-            if (this.winner.name_ == "geralt")
-            {
-                this.create_win("Assets/Skins/win/win.png");
-            }
-            else
-            {
-                this.create_win("Assets/Skins/win/los.png");
-            }
+            this.set_winner();
         }
             this.del_round(this.round);
     }

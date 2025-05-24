@@ -13,7 +13,6 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
     {
         // Начинаем отсчет времени при нажатии
         isHolding = true;
-        Debug.Log("Кнопка нажата!");
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -21,7 +20,6 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
         // Сбрасываем таймер при отпускании кнопки
         isHolding = false;
         holdTimer = 0f;
-        Debug.Log("Кнопка отпущена!");
     }
 
     void Start()
@@ -38,7 +36,6 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
             if (holdTimer >= holdDuration)
             {
-                Debug.Log("Игрок спасовал через кнопку!");
                 PassTurn();
                 ResetHold();
             }
@@ -51,7 +48,6 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
             if (holdTimer >= holdDuration)
             {
-                Debug.Log("Игрок спасовал через пробел!");
                 PassTurn();
                 ResetHold();
             }
