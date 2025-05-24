@@ -51,7 +51,6 @@ public class Card : MonoBehaviour
         set_pos(0, 0, 1);
     }
 
-
     public void set_pos(float x, float y, float z)
     {
         transform.position = new Vector3(x, y, z);
@@ -80,12 +79,6 @@ public class Card : MonoBehaviour
         sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
     }
 
-    private void Start()
-    {
-
-
-    }
-
     public void setParentFraction(Fraction fraction)
     {
         parentFraction = fraction;
@@ -100,6 +93,7 @@ public class Card : MonoBehaviour
     {
         return this.strenght;
     }
+
     public void OnMouseDown()
     {
         if (parentFraction != null)
@@ -112,49 +106,97 @@ public class Card : MonoBehaviour
     }
 
 
+    private string get_owner_name()
+    {
+        string owner_name = this.owner.name_ == "geralt" ? "Player" : "Enemy";
+
+        if (this.ability is AbilitySpy)
+        {
+            owner_name = this.owner.name_ == "geralt" ? "Enemy" : "Player";
+        }
+
+        return owner_name;
+    }
+
+    private string get_name_line(string type_millitary)
+    {
+        string plus_owner = this.get_owner_name();
+        string name_line = "";
+
+        if (type_millitary == "Ближний")
+        {
+            name_line = plus_owner + "MeleeRow";
+        }
+        else if (type_millitary == "Дальний")
+        {
+            name_line = plus_owner + "RangedRow";
+        }
+        else if (type_millitary == "Погода")
+        {
+            name_line = "WeatherField";
+        }
+        else
+        {
+            name_line = plus_owner + "SiegeRow";
+        }
+
+        if (type_millitary == "Командирский рог")
+        {
+            name_line = plus_owner + "MeleeRow";
+        }
+
+        return name_line;
+    }
+
+    private void set_weather_card_to_pos(Line line)
+    {
+        if (line.cards.Count == 1)
+        {
+            this._set_pos(-line.cards.Count * 0.6f, 0f, 2f);
+        }
+        else if (line.cards.Count == 2)
+        {
+            this._set_pos(-line.cards.Count * 0f, 0f, 2f);
+        }
+        else
+        {
+            this._set_pos(line.cards.Count * 0.2f, 0f, 2f);
+        }
+    }
+
+    private void set_card_hand_to_pos(Line line)
+    {
+        if (line.cards.Count < 6)
+        {
+            this._set_pos(-line.cards.Count * 0.8f, 0f, 2f);
+        }
+        else
+        {
+            this._set_pos((line.cards.Count - 6) * 0.8f, 0f, 2f);
+        }
+    }
+
+    private void set_parent_card_to(GameObject line, string type_line)
+    {
+        Transform row_lin = line.transform.Find(type_line);
+
+        this.transform.SetParent(null);
+        this.transform.SetParent(row_lin.transform);
+    }
+
+    private void set_commander_porn()
+    {
+        this._set_pos(0f, 0f, 0f);
+    }
+    
     public void OnMouseUpAsButton()
     {
         if (parentFraction == null && owner.hand_cards.Contains(this))
         {
-            List<string> types = new List<string>
-        {
-            "Ближний",
-            "Дальний",
-            "Осадный",
-            "Погода",
-            "Командирский рог"
-        };
-            var type_millitary = types[this.type.type];
-            string name_line = "";
+            string type_millitary = this.type.getType();
 
-            string plus_owner = this.owner.name_ == "geralt" ? "Player" : "Enemy";
+            string name_line = this.get_name_line(type_millitary);
 
-            if (this.ability is AbilitySpy)
-            {
-                plus_owner = this.owner.name_ == "geralt" ? "Enemy" : "Player";
-            }
-
-            if (type_millitary == "Ближний")
-            {
-                name_line = plus_owner + "MeleeRow";
-            }
-            else if (type_millitary == "Дальний")
-            {
-                name_line = plus_owner + "RangedRow";
-            }
-            else if (type_millitary == "Погода")
-            {
-                name_line = "WeatherField";
-            }
-            else
-            {
-                name_line = plus_owner + "SiegeRow";
-            }
-
-            if (type_millitary == "Командирский рог")
-            {
-
-            }
 
             GameObject obj_line = GameObject.Find(name_line);
             Line line = obj_line.GetComponent<Line>();
@@ -163,40 +205,20 @@ public class Card : MonoBehaviour
             {
                 line.add_card(this);
 
-                Transform row_lin = obj_line.transform.Find("RowMarker");
-
-                this.transform.SetParent(null);
-                this.transform.SetParent(row_lin.transform);
+                this.set_parent_card_to(obj_line, "RowMarker");
 
                 if (type_millitary == "Погода")
                 {
-                    if (line.cards.Count == 1)
-                    {
-                        this._set_pos(-line.cards.Count * 0.6f, 0f, 2f);
-                    }
-                    else if (line.cards.Count == 2)
-                    {
-                        this._set_pos(-line.cards.Count * 0f, 0f, 2f);
-                    }
-                    else
-                    {
-                        this._set_pos(line.cards.Count * 0.2f, 0f, 2f);
-                    }
+                    this.set_weather_card_to_pos(line);
                 }
                 else if (type_millitary == "Командирский рог")
                 {
-
+                    this.set_parent_card_to(obj_line, "CommanderHorn");
+                    this.set_commander_porn();
                 }
                 else
                 {
-                    if (line.cards.Count < 6)
-                    {
-                        this._set_pos(-line.cards.Count * 0.8f, 0f, 2f);
-                    }
-                    else
-                    {
-                        this._set_pos((line.cards.Count - 6) * 0.8f, 0f, 2f);
-                    }
+                    this.set_card_hand_to_pos(line);
                 }
 
                 owner.remove_card_in_hand(this); 

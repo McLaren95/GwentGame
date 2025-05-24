@@ -14,7 +14,6 @@ public class TypeMillitary : ScriptableObject
         this.type = type;
     }
     
-
     public string getType()
     {
         List<string> types = new List<string>
@@ -22,11 +21,10 @@ public class TypeMillitary : ScriptableObject
             "Ближний",
             "Дальний",
             "Осадный",
-            "Погода"
+            "Погода",
+            "Командирский рог"
         };
 
         return types[type];
-      
     }
-
 }

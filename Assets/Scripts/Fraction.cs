@@ -24,9 +24,6 @@ public class Fraction : MonoBehaviour
 
     public int index_leader;
 
-    public void usePassiveSkill() { return; }
-
-    public List<Card> returnDecCards() { return this.dec_cards; }
 
     private void Awake()
     {
@@ -42,7 +39,6 @@ public class Fraction : MonoBehaviour
 
         this.leader = cards_leaders[0];
 
-
         loadSprite(path_to_image);
         setupComponents();
 
@@ -50,18 +46,15 @@ public class Fraction : MonoBehaviour
         set_pos(0.0f, 400.0f, 1.0f);
     }
 
-
     public void set_pos(float x, float y, float z)
     {
         transform.position = new Vector3(x, y, z);
     }
 
-
     private void setupComponents()
     {
         render = GetComponent<SpriteRenderer>();
         render.sprite = sprite;
-
     }
 
     private void loadSprite(string path)

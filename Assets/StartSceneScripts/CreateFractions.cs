@@ -24,7 +24,6 @@ public class CreateFractions : MonoBehaviour
         return fraction;
     }
 
-
     public void nextFraction()
     {
         fractions[index_fraction].set_pos(0.0f, 450.0f, 1.0f);
@@ -69,7 +68,6 @@ public class CreateFractions : MonoBehaviour
         leaders.set_leaders_to_pos();
     }
     
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -119,8 +117,6 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
 
-
-        
         for (int i = 0; i < fractions.Count; i++)
         {
             for (int j = 0; j < fractions[i].cards_collection.Count; j++)

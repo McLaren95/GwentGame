@@ -3,17 +3,11 @@ using UnityEngine;
 public class GwentGame : MonoBehaviour
 {
     public GwentRound round;
-    //public GwentRound round2;
-    //public GwentRound round3;
 
     public int number_round;
 
     Player winner;
 
-    public void press_pass_button()
-    {
-        return;
-    }
 
     private void create_gwent()
     {

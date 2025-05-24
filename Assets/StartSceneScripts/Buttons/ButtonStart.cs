@@ -8,8 +8,6 @@ public class ButtonStart : MonoBehaviour
     [SerializeField] private CreateFractions create_fractions;
     public Button button;
 
-
-
     public void OnButtonClick()
     {
         if (create_fractions.selected_fraction.dec_cards.Count > 10)
@@ -17,8 +15,6 @@ public class ButtonStart : MonoBehaviour
             GameObject player1_ = new GameObject("player_geralt");
             var player1 = player1_.AddComponent<Player>();
             player1.initialization(create_fractions.selected_fraction, "geralt", "Assets/Skins/Cards/skoyataeli/heroes/saesentessis_files/geralt.jpg");
-
-
 
             GameObject player2_ = new GameObject("player_ciri");
             var player2 = player2_.AddComponent<Player>();

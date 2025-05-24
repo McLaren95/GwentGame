@@ -41,14 +41,12 @@ public class GwentRound : MonoBehaviour
         return name;
     }
 
-
     private Line create_line(string player, int type_int)
     {
         var type_ = ScriptableObject.CreateInstance<TypeMillitary>();
         type_.setType(type_int);
 
         string name_line = this.get_name_line(type_.getType(), player);
-
 
         GameObject obj_line = GameObject.Find(name_line);
         Line line = obj_line.AddComponent<Line>();
