@@ -186,7 +186,18 @@ public class GwentGame : MonoBehaviour
         {
             this.create_win("Assets/Skins/win/draw.png");
         }
-        this.del_round(this.round);
+        else
+        {
+            if (this.winner.name_ == "geralt")
+            {
+                this.create_win("Assets/Skins/win/win.png");
+            }
+            else
+            {
+                this.create_win("Assets/Skins/win/los.png");
+            }
+        }
+            this.del_round(this.round);
     }
 
     private void find_panel_score()
