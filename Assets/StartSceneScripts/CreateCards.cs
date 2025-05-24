@@ -266,7 +266,7 @@ public class CreateCards : MonoBehaviour
         cards.Add(createCard(" ейран", 8, "Assets/Skins/Cards/monsters/heroes/keyran.jpg", type_m[0], a_axe, 1));
         cards.Add(createCard("Ћеший", 10, "Assets/Skins/Cards/monsters/heroes/leshiy.jpg", type_m[1], a_no_effects, 1));
 
-        cards.Add(createCard("√ниющенко", 100, "Assets/Skins/govnushenko_card.jpg", type_m[2], a_no_effects, 1));
+        cards.Add(createCard("√ниющенко", 999, "Assets/Skins/govnushenko_card.jpg", type_m[0], a_no_effects, 1));
 
         return cards;
     }

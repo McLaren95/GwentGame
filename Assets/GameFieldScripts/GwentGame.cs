@@ -16,7 +16,7 @@ public class GwentGame : MonoBehaviour
         gwent.transform.SetParent(game_field.transform);
     }
 
-    private Line clear_line(Line line, Transform pos_cards_to_line)
+    public Line clear_line(Line line, Transform pos_cards_to_line)
     {
         for (int i = 0; line.cards.Count != 0;)
         {
