@@ -26,6 +26,11 @@ public class Card : MonoBehaviour
     public Player owner;
 
 
+    public void use_ability()
+    {
+        this.ability.useAbility();
+    }
+
     public void initialization(
         string name,
         int strenght,
@@ -94,6 +99,16 @@ public class Card : MonoBehaviour
         return this.strenght;
     }
 
+    public void set_strenght(int strenght)
+    {
+        this.strenght = strenght;
+    }
+
+    public void set_leader_line(Line line)
+    {
+        this.ability.set_line(line);
+    }
+
     public void OnMouseDown()
     {
         if (parentFraction != null)
@@ -148,17 +163,12 @@ public class Card : MonoBehaviour
         return name_line;
     }
 
-    private void send_to_dead_copy_weather_card(string name_line, Line line)
+    public void send_to_dead_card(string name_line)
     {
-        if (line.cards.Contains(this))
-        {
-            GameObject weather_line = GameObject.Find(name_line);
+        GameObject weather_line = GameObject.Find(name_line);
 
-            this.set_parent_card_to(weather_line, "DeadCards");
-            this._set_pos(0f, 0f, 0f);
-
-            return;
-        }
+        this.set_parent_card_to(weather_line, "DeadCards");
+        this._set_pos(0f, 0f, 0f);
     }
 
     private bool clear_weather_line(Line line)
@@ -283,9 +293,9 @@ public class Card : MonoBehaviour
 
 
 
-    private void make_enemy()
+    public void make_enemy()
     {
-        if (parentFraction == null && owner.hand_cards.Contains(this))
+        if (parentFraction == null && owner.hand_cards.Contains(this) || this.ability is AbilityDouble)
         {
             string type_millitary = this.type.getType();
 
@@ -295,7 +305,7 @@ public class Card : MonoBehaviour
             GameObject obj_line = GameObject.Find(name_line);
             Line line = obj_line.GetComponent<Line>();
 
-            if (line.cards.Count < 11 && (!line.cards.Contains(this) || this.ability is AbilityStrongConnection))
+            if (line.cards.Count < 11 && (!line.cards.Contains(this) || this.ability is AbilityStrongConnection || this.ability is AbilityDouble))
             {
                 line.add_card(this);
 

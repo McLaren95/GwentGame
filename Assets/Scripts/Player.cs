@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
         NotifyCardCountChanged();
     }
 
+
     private void NotifyCardCountChanged()
     {
         OnCardCountChanged?.Invoke(hand_cards.Count);
