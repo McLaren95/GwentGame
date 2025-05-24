@@ -6,6 +6,8 @@ public class GwentGame : MonoBehaviour
 
     public int number_round;
 
+    public RowPointsPanel panel;
+
     Player winner;
 
 
@@ -47,6 +49,11 @@ public class GwentGame : MonoBehaviour
         Destroy(round);
     }
 
+    private void set_score_null()
+    {
+        this.round.p1_line_melee.update_score_lines();
+    }
+
     public void create_round()
     {
         if (this.number_round != 0)
@@ -65,6 +72,10 @@ public class GwentGame : MonoBehaviour
         this.round.initialization(1, player1, player2);
         this.round.transform.SetParent(null);
         this.round.transform.SetParent(gwent.transform);
+
+        this.panel.set_round(this.round);
+
+        this.set_score_null();
     }
 
     public void end()
@@ -72,9 +83,17 @@ public class GwentGame : MonoBehaviour
         this.del_round(this.round);
     }
 
+    private void find_panel_score()
+    {
+        GameObject obj_panel = GameObject.Find("RowPointsPanel");
+        this.panel = obj_panel.GetComponent<RowPointsPanel>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        find_panel_score();
+
         this.number_round = 0;
         create_gwent();
         create_round();

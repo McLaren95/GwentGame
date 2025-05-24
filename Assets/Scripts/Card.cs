@@ -224,8 +224,8 @@ public class Card : MonoBehaviour
     {
         this._set_pos(0f, 0f, 0f);
     }
-   
 
+   
     public void OnMouseUpAsButton()
     {
         if (parentFraction == null && owner.hand_cards.Contains(this))

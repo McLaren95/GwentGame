@@ -9,6 +9,13 @@ public class Line : MonoBehaviour
 
     public int score;
 
+    public void update_score_lines()
+    {
+        GameObject obj_panel = GameObject.Find("RowPointsPanel");
+        RowPointsPanel panel = obj_panel.GetComponent<RowPointsPanel>();
+
+        panel.update_score();
+    }
 
     public void initialization(TypeMillitary type)
     {
@@ -21,15 +28,12 @@ public class Line : MonoBehaviour
     {
         cards.Add(card);
         this.score += card.get_strenght();
+
+        this.update_score_lines();
     }
 
-    void Start()
+    public int get_score()
     {
-        this.score = 0;
-    }
-
-    void Update()
-    {
-        
+        return this.score;
     }
 }

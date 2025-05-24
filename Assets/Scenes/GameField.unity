@@ -5210,9 +5210,12 @@ MonoBehaviour:
   playerMeleePointsText: {fileID: 1439062150}
   playerRangedPointsText: {fileID: 754756912}
   playerSiegePointsText: {fileID: 1124698712}
+  player_total: {fileID: 1111008112}
   enemyMeleePointsText: {fileID: 358596697}
   enemyRangedPointsText: {fileID: 1038978220}
   enemySiegePointsText: {fileID: 1225391794}
+  enemy_total: {fileID: 57793425}
+  gwentRound: {fileID: 0}
 --- !u!1 &1464660641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,6 +5715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   round: {fileID: 0}
   number_round: 0
+  panel: {fileID: 0}
 --- !u!1 &1651374050
 GameObject:
   m_ObjectHideFlags: 0
