@@ -64,13 +64,13 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
     private void PassTurn()
     {
-        if (gwent.round == 1)
+        if (gwent.number_round == 1)
         {
-            gwent.create_second_round();
+            gwent.create_round();
         }
-        else if (gwent.round == 2)
+        else if (gwent.number_round == 2)
         {
-            gwent.create_third_round();
+            gwent.create_round();
         }
         else
         {

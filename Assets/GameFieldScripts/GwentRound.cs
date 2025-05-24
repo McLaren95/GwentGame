@@ -16,32 +16,39 @@ public class GwentRound : MonoBehaviour
     public Line p2_line_siege;
 
     public int number_round;
+    
+
+    private string get_name_line(string type_m, string player)
+    {
+        string name = "";
+        if (type_m == "Ближний")
+        {
+            name = player + "MeleeRow";
+        }
+        else if (type_m == "Дальний")
+        {
+            name = player + "RangedRow";
+        }
+        else if (type_m == "Погода")
+        {
+            name = "WeatherField";
+        }
+        else
+        {
+            name = player + "SiegeRow";
+        }
+
+        return name;
+    }
+
 
     private Line create_line(string player, int type_int)
     {
         var type_ = ScriptableObject.CreateInstance<TypeMillitary>();
         type_.setType(type_int);
 
-        string name_line = "";
+        string name_line = this.get_name_line(type_.getType(), player);
 
-        string type_millitary = type_.getType();
-
-        if (type_millitary == "Ближний")
-        {
-            name_line = player + "MeleeRow";
-        }
-        else if (type_millitary == "Дальний")
-        {
-            name_line = player + "RangedRow";
-        }
-        else if (type_millitary == "Погода")
-        {
-            name_line = "WeatherField";
-        }
-        else
-        {
-            name_line = player + "SiegeRow";
-        }
 
         GameObject obj_line = GameObject.Find(name_line);
         Line line = obj_line.AddComponent<Line>();
@@ -70,10 +77,4 @@ public class GwentRound : MonoBehaviour
         p2_line_ranged = create_line("Enemy", 1);
         p2_line_siege = create_line("Enemy", 2);
     }
-
-   public void set_pass()
-    {
-        return;
-    }
-
 }
