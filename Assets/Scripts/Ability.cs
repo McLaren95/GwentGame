@@ -77,7 +77,12 @@ public class AbilityDouble : AbilityAbstract
 
     public override void useAbility()
     {
-       
+       for (int i = 0; i < this.line.cards.Count; i++)
+        {
+            this.line.cards[i].set_strenght(this.line.cards[i].get_strenght() + 2);
+        }
+
+        this.line.recalc_score_line();
     }
 }
 
@@ -394,7 +399,78 @@ public class AbilityScarecrow : AbilityAbstract
 
 public class AbilityAx : AbilityAbstract
 {
-    public override void useAbility() { return; }
+    private Line line_to_kill;
+
+
+    private void choice_line()
+    {
+        GameObject game = GameObject.Find("GameField");
+        GwentRound round = game.GetComponent<GwentGame>().round;
+
+        if (this.owner.name_ == "geralt")
+        {
+            this.line_to_kill = round.p2_line_melee;
+        }
+        else
+        {
+            this.line_to_kill = round.p1_line_melee;
+        }
+    }
+
+    public override void useAbility()
+    {
+        this.choice_line();
+
+        List<Card> cards_to_dell = new List<Card>();
+
+        for (int i = 0; i < this.line_to_kill.cards.Count; i++)
+        {
+            Card card;
+            if (cards_to_dell.Count > 0)
+            {
+                card = cards_to_dell[0];
+            }
+            else
+            {
+                card = this.line_to_kill.cards[i];
+            }
+
+            if (card.get_strenght() >= 10 && card.is_hero == 0)
+            {
+                cards_to_dell.Add(card);
+
+                for (int j = i + 1; j < this.line_to_kill.cards.Count; j++)
+                {
+                    if (this.line_to_kill.cards[j].get_strenght() > card.get_strenght())
+                    {
+                        cards_to_dell.Clear();
+                        cards_to_dell.Add(this.line_to_kill.cards[j]);
+                        card = this.line_to_kill.cards[j];
+                    }
+                    else if (this.line_to_kill.cards[j].get_strenght() == card.get_strenght())
+                    {
+                        cards_to_dell.Add(this.line_to_kill.cards[j]);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < cards_to_dell.Count; i++)
+        {
+            line_to_kill.del_card_to_line(cards_to_dell[i]);
+
+            if (owner.name_ == "geralt")
+            {
+                cards_to_dell[i].send_to_dead_card("EnemyDeadCards");
+            }
+            else
+            {
+                cards_to_dell[i].send_to_dead_card("PlayerDeadCards");
+            }
+        }
+
+        line_to_kill.recalc_score_line();
+    }
 }
 
 public class AbilityNoEffect : AbilityAbstract
