@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 57018276}
   - component: {fileID: 57018275}
   m_Layer: 5
-  m_Name: FactionName
+  m_Name: EnemyFactionName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -689,6 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdDuration: 1
+  gwent: {fileID: 0}
 --- !u!1 &137076133
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +701,7 @@ GameObject:
   - component: {fileID: 137076134}
   - component: {fileID: 137076135}
   m_Layer: 0
-  m_Name: DeckCards
+  m_Name: DeckCardsPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +963,7 @@ GameObject:
   - component: {fileID: 233321388}
   - component: {fileID: 233321387}
   m_Layer: 5
-  m_Name: CardCount
+  m_Name: PlayerCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,9 +1292,8 @@ GameObject:
   m_Component:
   - component: {fileID: 350266630}
   - component: {fileID: 350266632}
-  - component: {fileID: 350266631}
   m_Layer: 5
-  m_Name: FactionAvatar
+  m_Name: FactionAvatarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,39 +1315,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -863, y: 228}
+  m_AnchoredPosition: {x: -896.49994, y: 228}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &350266631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350266629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &350266632
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1549,9 +1519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PlayerName
-
-'
+  m_text: "\u0413\u0435\u0440\u0430\u043B\u044C\u0442\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1805,7 +1773,7 @@ GameObject:
   - component: {fileID: 470319632}
   - component: {fileID: 470319631}
   m_Layer: 5
-  m_Name: HealthIcon2
+  m_Name: EnemyHealthIcon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1909,6 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491948394}
+  - component: {fileID: 491948395}
   m_Layer: 5
   m_Name: EnemyInfoPanel
   m_TagString: Untagged
@@ -1941,6 +1910,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &491948395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491948393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d94a344fadea4b4695d1152bccc7a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factionNameText: {fileID: 57018275}
+  enemyCountText: {fileID: 757924303}
 --- !u!1 &602621512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +1935,7 @@ GameObject:
   - component: {fileID: 602621513}
   - component: {fileID: 602621514}
   m_Layer: 0
-  m_Name: WeatherField
+  m_Name: RowMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2071,7 +2054,7 @@ GameObject:
   - component: {fileID: 673176567}
   - component: {fileID: 673176568}
   m_Layer: 0
-  m_Name: DeckCards
+  m_Name: DeckCardsEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2204,7 +2187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: EnemyName
+  m_text: "\u0426\u0438\u0440\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2655,7 +2638,7 @@ GameObject:
   - component: {fileID: 757924304}
   - component: {fileID: 757924303}
   m_Layer: 5
-  m_Name: CardCount
+  m_Name: EnemyCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4610,9 +4593,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1238184823}
   - component: {fileID: 1238184825}
-  - component: {fileID: 1238184824}
   m_Layer: 5
-  m_Name: FactionAvatar
+  m_Name: FactionAvatarPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4634,39 +4616,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -864.5, y: -216}
+  m_AnchoredPosition: {x: -898, y: -216}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1238184824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238184822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1238184825
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4717,6 +4669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1298716220}
+  - component: {fileID: 1298716221}
   m_Layer: 5
   m_Name: PlayerInfoPanel
   m_TagString: Untagged
@@ -4749,6 +4702,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1298716221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298716219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba64998296a8d8544bdf91e7b8c3c9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factionNameText: {fileID: 1075557152}
+  playerCountText: {fileID: 233321387}
 --- !u!1 &1340174338
 GameObject:
   m_ObjectHideFlags: 0
@@ -4761,7 +4728,7 @@ GameObject:
   - component: {fileID: 1340174341}
   - component: {fileID: 1340174340}
   m_Layer: 5
-  m_Name: HealthIcon2
+  m_Name: PlayerHealthIcon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5123,7 +5090,7 @@ GameObject:
   - component: {fileID: 1445719690}
   - component: {fileID: 1445719689}
   m_Layer: 5
-  m_Name: HealthIcon1
+  m_Name: PlayerHealthIcon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5195,6 +5162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1453656531}
+  - component: {fileID: 1453656532}
   m_Layer: 5
   m_Name: RowPointsPanel
   m_TagString: Untagged
@@ -5227,6 +5195,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1453656532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453656530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961a4404607bf2f41895e0f534d2dd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMeleePointsText: {fileID: 1439062150}
+  playerRangedPointsText: {fileID: 754756912}
+  playerSiegePointsText: {fileID: 1124698712}
+  player_total: {fileID: 1111008112}
+  enemyMeleePointsText: {fileID: 358596697}
+  enemyRangedPointsText: {fileID: 1038978220}
+  enemySiegePointsText: {fileID: 1225391794}
+  enemy_total: {fileID: 57793425}
+  gwentRound: {fileID: 0}
 --- !u!1 &1464660641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,7 +5541,7 @@ GameObject:
   - component: {fileID: 1555588353}
   - component: {fileID: 1555588352}
   m_Layer: 5
-  m_Name: HealthIcon1
+  m_Name: EnemyHealthIcon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5657,6 +5646,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1627085238}
+  - component: {fileID: 1627085239}
+  - component: {fileID: 1627085240}
   m_Layer: 0
   m_Name: GameField
   m_TagString: Untagged
@@ -5698,6 +5689,35 @@ Transform:
   - {fileID: 1417152969}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1627085239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627085237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1378e239ba38e439846c6332602d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1627085240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627085237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9481901a978ae7f4a9b3ce77c0c87e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  round: {fileID: 0}
+  number_round: 0
+  panel: {fileID: 0}
+  healt_player: []
+  healt_enemy: []
 --- !u!1 &1651374050
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,7 +5729,7 @@ GameObject:
   - component: {fileID: 1651374051}
   - component: {fileID: 1651374052}
   m_Layer: 0
-  m_Name: Leader
+  m_Name: LeaderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5965,7 +5985,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -4738896665899811287, guid: 8b1f460e6c353bc47b43dbee0fc7a6a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6353,7 +6373,7 @@ GameObject:
   - component: {fileID: 1780666380}
   - component: {fileID: 1780666381}
   m_Layer: 0
-  m_Name: Leader
+  m_Name: LeaderPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6440,7 +6460,7 @@ GameObject:
   - component: {fileID: 1782775047}
   - component: {fileID: 1782775048}
   m_Layer: 0
-  m_Name: 'RowMarker '
+  m_Name: RowMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6745,28 +6765,33 @@ GameObject:
   m_Component:
   - component: {fileID: 2090729405}
   - component: {fileID: 2090729406}
+  - component: {fileID: 2090729408}
   m_Layer: 0
-  m_Name: DeckHand
+  m_Name: HandDeckPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2090729405
-Transform:
+--- !u!224 &2090729405
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090729404}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -766.2, y: -358.6, z: -0.05354923}
-  m_LocalScale: {x: 1.127297, y: 0.85, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 487399362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -766.25, y: -358.68}
+  m_SizeDelta: {x: 9.63, y: 1.57}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2090729406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6822,11 +6847,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2090729408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090729404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 709595771}
-  - {fileID: 1690676365}
   - {fileID: 1627085238}
+  - {fileID: 1690676365}
   - {fileID: 1968801195}

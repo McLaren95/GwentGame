@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TypeMillitary : ScriptableObject
 {
-    private int type;
+    public int type;
 
 
     public void setType(int type)
@@ -14,18 +14,17 @@ public class TypeMillitary : ScriptableObject
         this.type = type;
     }
     
-
     public string getType()
     {
         List<string> types = new List<string>
         {
             "Ближний",
             "Дальний",
-            "Осадный"
+            "Осадный",
+            "Погода",
+            "Командирский рог"
         };
 
         return types[type];
-      
     }
-
 }

@@ -18,6 +18,7 @@ public abstract class LeaderAbstract : MonoBehaviour
         setupComponents();
 
         transform.localScale = new Vector3(40, 40, 1);
+        transform.position = new Vector3(0, 0, 1);
 
         return this;
     }
@@ -25,6 +26,16 @@ public abstract class LeaderAbstract : MonoBehaviour
     public void set_pos(float x, float y, float z)
     {
         transform.position = new Vector3(x, y, z);
+    }
+
+    public void _set_pos(float x, float y, float z)
+    {
+        transform.localPosition = new Vector3(x, y, z);
+    }
+
+    public void _set_scale(float x, float y, float z)
+    {
+        transform.localScale = new Vector3(x, y, z);
     }
 
     private void setupComponents()

@@ -6,7 +6,7 @@ public class MenuController : MonoBehaviour
 {
     public void OnStartGameButtonClick()
     {
-        Debug.Log("Start Game pressed");
+        SceneManager.LoadScene("StartScene");
     }
 
     public void OnSettingsButtonClick()

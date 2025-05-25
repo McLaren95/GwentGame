@@ -6,7 +6,7 @@ public class CreateFractions : MonoBehaviour
 {
     private Fraction fraction;
     [SerializeField] private CreateCards create_cards; 
-    private List<Fraction> fractions = new List<Fraction>();
+    public List<Fraction> fractions = new List<Fraction>();
     public Fraction selected_fraction;
     private int index_fraction;
 
@@ -23,7 +23,6 @@ public class CreateFractions : MonoBehaviour
         fraction.transform.SetParent(transform);
         return fraction;
     }
-
 
     public void nextFraction()
     {
@@ -69,7 +68,6 @@ public class CreateFractions : MonoBehaviour
         leaders.set_leaders_to_pos();
     }
     
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -119,8 +117,6 @@ public class CreateFractions : MonoBehaviour
         fractions[index_fraction].set_pos(0.0f, 450.0f, -150.0f);
         selected_fraction = fractions[index_fraction];
 
-
-        
         for (int i = 0; i < fractions.Count; i++)
         {
             for (int j = 0; j < fractions[i].cards_collection.Count; j++)
@@ -130,12 +126,13 @@ public class CreateFractions : MonoBehaviour
             for (int j = 0; j < fractions[i].cards_leaders.Count; j++)
             {
                 fractions[i].cards_leaders[j].setParentFraction(fractions[i]);
+
             }
         }
 
         collection.set_cards_to_pos();
         dec.set_cards_to_pos();
-        leaders.set_leaders_to_pos();
+        selected_fraction.cards_leaders[selected_fraction.index_leader].set_pos(0, 200, -300);
     }
 
 }

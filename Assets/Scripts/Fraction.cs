@@ -10,10 +10,10 @@ public class Fraction : MonoBehaviour
     [SerializeField] private CardController dec;
     [SerializeField] private CardController leader_controller;
 
-    private string name_fraction;
-    private PassiveSkillAbstract passive_skill;
+    public string name_fraction;
+    public PassiveSkillAbstract passive_skill;
     [SerializeField] public LeaderAbstract leader;
-    private StatsUserCards stats;
+    public StatsUserCards stats;
 
     public List<Card> cards_collection = new List<Card>();
     public List<Card> dec_cards = new List<Card>();
@@ -24,12 +24,13 @@ public class Fraction : MonoBehaviour
 
     public int index_leader;
 
-    public void usePassiveSkill() { return; }
 
-    public List<Card> returnDecCards() { return this.dec_cards; }
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
-
-   public void initialization(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path_to_image)
+    public void initialization(string name, PassiveSkillAbstract skill, List<Card> cards, List<LeaderAbstract> leaders, string path_to_image)
     {
         this.name_fraction = name;
         this.passive_skill = skill;
@@ -38,7 +39,6 @@ public class Fraction : MonoBehaviour
 
         this.leader = cards_leaders[0];
 
-
         loadSprite(path_to_image);
         setupComponents();
 
@@ -46,18 +46,15 @@ public class Fraction : MonoBehaviour
         set_pos(0.0f, 400.0f, 1.0f);
     }
 
-
     public void set_pos(float x, float y, float z)
     {
         transform.position = new Vector3(x, y, z);
     }
 
-
     private void setupComponents()
     {
         render = GetComponent<SpriteRenderer>();
         render.sprite = sprite;
-
     }
 
     private void loadSprite(string path)
@@ -85,7 +82,7 @@ public class Fraction : MonoBehaviour
 
     public void next_leader()
     {
-        this.leader.set_pos(0, 200, 0);
+        this.leader.set_pos(0, 200, 1);
         this.index_leader++;
         if (this.index_leader == this.cards_leaders.Count)
         {

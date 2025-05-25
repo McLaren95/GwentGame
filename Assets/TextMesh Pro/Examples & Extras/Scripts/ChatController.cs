@@ -13,12 +13,12 @@ public class ChatController : MonoBehaviour {
 
     void OnEnable()
     {
-        ChatInputField.onSubmit.AddListener(AddToChatOutput);
+        //ChatInputField.onSubmit.AddListener(AddToChatOutput);
     }
 
     void OnDisable()
     {
-        ChatInputField.onSubmit.RemoveListener(AddToChatOutput);
+        //ChatInputField.onSubmit.RemoveListener(AddToChatOutput);
     }
 
 

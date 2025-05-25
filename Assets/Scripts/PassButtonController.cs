@@ -7,12 +7,12 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
     public float holdDuration = 1f; // Время удержания кнопки (в секундах)
     private float holdTimer = 0f;   // Таймер удержания
     private bool isHolding = false; // Флаг удержания
+    public GwentGame gwent;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         // Начинаем отсчет времени при нажатии
         isHolding = true;
-        Debug.Log("Кнопка нажата!");
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -20,7 +20,11 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
         // Сбрасываем таймер при отпускании кнопки
         isHolding = false;
         holdTimer = 0f;
-        Debug.Log("Кнопка отпущена!");
+    }
+
+    void Start()
+    {
+        gwent = GameObject.Find("GameField").GetComponent<GwentGame>();
     }
 
     void Update()
@@ -32,7 +36,6 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
             if (holdTimer >= holdDuration)
             {
-                Debug.Log("Игрок спасовал через кнопку!");
                 PassTurn();
                 ResetHold();
             }
@@ -45,7 +48,6 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
             if (holdTimer >= holdDuration)
             {
-                Debug.Log("Игрок спасовал через пробел!");
                 PassTurn();
                 ResetHold();
             }
@@ -58,7 +60,18 @@ public class PassButtonController : MonoBehaviour, IPointerDownHandler, IPointer
 
     private void PassTurn()
     {
-        // Логика пасования (например, передача хода противнику)
+        if (gwent.number_round == 1)
+        {
+            gwent.create_round();
+        }
+        else if (gwent.number_round == 2)
+        {
+            gwent.create_round();
+        }
+        else
+        {
+            gwent.end();
+        }
     }
 
     private void ResetHold()

@@ -168,7 +168,7 @@ public class CardController : MonoBehaviour
         {
             if (this.fraction.selected_fraction.index_leader != i)
             {
-                fraction.selected_fraction.cards_leaders[i].set_pos(0, 200, 0);
+                fraction.selected_fraction.cards_leaders[i].set_pos(0, 200, 1);
             }
         }
         

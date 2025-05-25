@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1d4b1a73326df574689c5a3022679bfc
+guid: 049618f5497c4cb4e8d2ee21c2df1886
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 687169006189614400
-    second: "\u0426\u0438\u0440\u0438_3_(\u0412\u0435\u0434\u044C\u043C\u0430\u043A_3)_0"
+      213: 8222506660437468856
+    second: komandirskiy_rog_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0426\u0438\u0440\u0438_3_(\u0412\u0435\u0434\u044C\u043C\u0430\u043A_3)_0"
+      name: komandirskiy_rog_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 104
-        height: 104
+        width: 310
+        height: 585
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04517920290598900800000000000000
-      internalID: 687169006189614400
+      spriteID: 8b6a8a23e363c1270800000000000000
+      internalID: 8222506660437468856
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0426\u0438\u0440\u0438_3_(\u0412\u0435\u0434\u044C\u043C\u0430\u043A_3)_0": 687169006189614400
+      komandirskiy_rog_0: 8222506660437468856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
