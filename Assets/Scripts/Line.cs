@@ -59,6 +59,15 @@ public class Line : MonoBehaviour
         }
     }
 
+    private void check_ability_ax(Card card)
+    {
+        if (card.ability is AbilityAx)
+        {
+            card.ability.set_owner_card(card);
+            card.ability.set_owner(card.owner);
+        }
+    }
+
     public void add_card(Card card)
     {
         cards.Add(card);
@@ -67,6 +76,7 @@ public class Line : MonoBehaviour
         this.check_ability_axe(card);
         this.set_ability_owner_card(card);
         this.check_ability_double(card);
+        this.check_ability_ax(card);
 
         card.set_leader_line(this);
         card.use_ability();

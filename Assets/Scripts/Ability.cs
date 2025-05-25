@@ -468,8 +468,6 @@ public class AbilityAx : AbilityAbstract
                 cards_to_dell[i].send_to_dead_card("PlayerDeadCards");
             }
         }
-
-        line_to_kill.recalc_score_line();
     }
 }
 

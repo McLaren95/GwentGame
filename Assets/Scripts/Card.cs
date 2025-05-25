@@ -5,6 +5,7 @@ using System.Runtime.Versioning;
 using System.Diagnostics;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System.Threading;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -310,6 +311,8 @@ public class Card : MonoBehaviour
                 line.add_card(this);
 
                 this.set_parent_card_to(obj_line, "RowMarker");
+
+                
                 if (type_millitary == "Погода")
                 {
                     this.set_weather_card_to_pos(line);
